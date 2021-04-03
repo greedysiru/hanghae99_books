@@ -4,7 +4,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Navigator from '../components/Navigator';
 import Slide from '../components/Slide';
-import Card from '../components/Card';
+import Cards from '../components/Cards';
 
 
 
@@ -15,7 +15,7 @@ const Main = (props) => {
       <Header />
       <Navigator />
       <Slide />
-      <Card />
+      <Cards />
     </div>
   )
 };

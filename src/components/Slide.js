@@ -3,6 +3,9 @@ import Carousel from "react-material-ui-carousel"
 import autoBind from "auto-bind"
 import '../styles/slide.scss';
 
+// 메인페이지의 슬라이드
+
+// 슬라이드에 필요한 요소 가져오기
 import {
   Card,
   CardContent,
@@ -19,53 +22,169 @@ import {
   IconButton
 } from '@material-ui/core';
 
-function Slide(props) {
+function Banner(props) {
+  if (props.newProp) console.log(props.newProp)
+  const contentPosition = props.contentPosition ? props.contentPosition : "left"
+  const totalItems = props.length ? props.length : 3;
+  const mediaLength = totalItems - 1;
 
+  let items = [];
+  const content = (
+    <Grid item xs={12 / totalItems} key="content">
+      <CardContent className="Content">
+        <Typography className="Title">
+          {props.item.Name}
+        </Typography>
 
-  return (
-    <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-      <ol className="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div className="carousel-inner">
-        <div className="carousel-item item1 active">
-          <div className="helper"></div>
-          <div className="intro">
-            <h2>음악 배워보세요</h2>
-            <h3>멋진 뮤지션들이 주변에 있습니다.</h3>
-            <a href="#">수업 찾기</a>
-          </div>
-        </div>
-        <div className="carousel-item item2">
-          <div className="helper"></div>
-          <div className="intro">
-            <h2>메이크업 배워보세요</h2>
-            <h3>멋진 메이크업 아티스트들이 주변에 있습니다.</h3>
-            <a href="#">수업 찾기</a>
-          </div>
-        </div>
-        <div className="carousel-item item3">
-          <div className="helper"></div>
-          <div className="intro">
-            <h2>요리 배워보세요</h2>
-            <h3>멋진 요리사들이 주변에 있습니다.</h3>
-            <a href="#">수업 찾기</a>
-          </div>
-        </div>
-      </div>
-      <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="sr-only">Previous</span>
-      </a>
-      <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="sr-only">Next</span>
-      </a>
-    </div>
+        <Typography className="Caption">
+          {props.item.Caption}
+        </Typography>
+
+        <Button variant="outlined" className="ViewButton">
+          View Now
+                </Button>
+      </CardContent>
+    </Grid>
   )
 
+
+  for (let i = 0; i < mediaLength; i++) {
+    const item = props.item.Items[i];
+
+    const media = (
+      <Grid item xs={12 / totalItems} key={item.Name}>
+        <CardMedia
+          className="Media"
+          image={item.Image}
+          title={item.Name}
+        >
+          <Typography className="MediaCaption">
+            {item.Name}
+          </Typography>
+        </CardMedia>
+
+      </Grid>
+    )
+
+    items.push(media);
+  }
+
+  if (contentPosition === "left") {
+    items.unshift(content);
+  } else if (contentPosition === "right") {
+    items.push(content);
+  } else if (contentPosition === "middle") {
+    items.splice(items.length / 2, 0, content);
+  }
+
+  return (
+    <Card raised className="Banner">
+      <Grid container spacing={0} className="BannerGrid">
+        {items}
+      </Grid>
+    </Card>
+  )
+}
+
+// 슬라이드를 구성하는 컨텐츠
+const items = [
+  {
+    Name: "Electronics",
+    Caption: "Electrify your friends!",
+    contentPosition: "left",
+    Items: [
+      {
+        Name: "Macbook Pro",
+        Image: "https://source.unsplash.com/featured/?macbook"
+      },
+      {
+        Name: "iPhone",
+        Image: "https://source.unsplash.com/featured/?iphone"
+      }
+    ]
+  },
+  {
+    Name: "Home Appliances",
+    Caption: "Say no to manual home labour!",
+    contentPosition: "middle",
+    Items: [
+      {
+        Name: "Washing Machine WX9102",
+        Image: "https://source.unsplash.com/featured/?washingmachine"
+      },
+      {
+        Name: "Learus Vacuum Cleaner",
+        Image: "https://source.unsplash.com/featured/?vacuum,cleaner"
+      }
+    ]
+  },
+  {
+    Name: "Decoratives",
+    Caption: "Give style and color to your living room!",
+    contentPosition: "right",
+    Items: [
+      {
+        Name: "Living Room Lamp",
+        Image: "https://source.unsplash.com/featured/?lamp"
+      },
+      {
+        Name: "Floral Vase",
+        Image: "https://source.unsplash.com/featured/?vase"
+      }
+    ]
+  }
+]
+
+class Slide extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      autoPlay: true,
+      animation: "slide",
+      indicators: false,
+      timeout: 1000,
+      navButtonsAlwaysVisible: true,
+      navButtonsAlwaysInvisible: false,
+      cycleNavigation: true,
+    }
+
+    autoBind(this);
+  }
+
+
+  render() {
+    return (
+      <div style={{ color: "#494949" }}>
+
+        <Carousel
+          className="carousel"
+          autoPlay={this.state.autoPlay}
+          animation={this.state.animation}
+          indicators={this.state.indicators}
+          timeout={this.state.timeout}
+          cycleNavigation={this.state.cycleNavigation}
+          navButtonsAlwaysVisible={this.state.navButtonsAlwaysVisible}
+          navButtonsAlwaysInvisible={this.state.navButtonsAlwaysInvisible}
+          next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+          prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+          onChange={(now, previous) => console.log(`OnChange User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+
+        >
+          {
+            items.map((item, index) => {
+              return <Banner item={item} key={index} contentPosition={item.contentPosition} />
+            })
+          }
+        </Carousel>
+
+
+
+
+      </div>
+
+    )
+  }
 }
 
 export default Slide;

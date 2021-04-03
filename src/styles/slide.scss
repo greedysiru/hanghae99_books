@@ -1,105 +1,158 @@
-// // 슬라이더 기본 설정
+//  슬라이드 폰트 및 기본 설정
+$blue: rgb(72, 109, 209);
+$blue-hover: rgb(63, 97, 189);
+$white-blue: rgb(90, 123, 212);
+$whiter-blue: rgb(109, 136, 216);
+$grey-blue: #557a95;
 
-// .Banner
-// {
-//     height: 400px;
-//     position: relative;
+$mui-primary: #3f51b5;
+$mui-secondary: #f50057;
 
-//     .Media
-//     {
-//         background-color: white;
-//         height: 100%;
-//         overflow: hidden;
+$orange: orange;
 
-//         position: relative;
+$red: rgb(196, 37, 37);
+$red-dim: rgb(207, 71, 71);
+$red-hover: rgb(177, 33, 33);
+$red-active: rgb(158, 29, 29);
 
-//         .MediaCaption
-//         {
-//             text-overflow: ellipsis;
+$dark-red: rgb(119, 24, 24);
+$dark-red-hover: rgb(104, 20, 20);
+$dark-red-active: rgb(87, 17, 17);
 
-//             position: absolute;
-//             bottom: 0;
+$green: #159c2b;
 
-//             padding: 15px;
+$not-white: rgb(250, 250, 250);
+$almost-white: rgb(241, 241, 241);
+$basically-white: rgb(235, 235, 235);
+$less-white: rgb(230, 230, 230);
+$lesser-white: rgb(216, 216, 216);
+$grey: rgb(175, 175, 175);
+$graphite-hover: rgb(87, 87, 87);
+$graphite: rgb(73, 73, 73);
 
-//             background-color: black;
-//             color: white;
-//             opacity: 0.6;
+$font: Ubuntu, Helvetica, Arial, sans-serif;
 
-//             width: 100%;
-//             height: 10%;
+$smaller-font-size: 12px;
+$small-font-size: 15px;
+$normal-font-size: 18px;
+$bigger-font-size: 21px;
+$header-font-size: 25px;
+$big-header-font-size: 30px;
+$huge-font-size: 40px;
 
+// 슬라이드 스타일
+.Banner
+{
+    height: 400px;
+    position: relative;
 
-//             transition: 300ms;
-//             cursor: pointer;
-//             &:hover
-//             {
-//                 opacity: 0.8;
-//             }
+    .Media
+    {
+        background-color: white;
+        height: 100%;
+        overflow: hidden;
+
+        position: relative;
+
+        .MediaCaption
+        {
+            text-overflow: ellipsis;
+
+            position: absolute;
+            bottom: 0;
+
+            padding: 15px;
+
+            background-color: black;
+            color: white;
+            opacity: 0.6;
+
+            width: 100%;
+            height: 10%;
+
+            font:
+            {
+                size: $header-font-size;
+                weight: 200;
+            }
+
+            transition: 300ms;
+            cursor: pointer;
+            &:hover
+            {
+                opacity: 0.8;
+            }
             
-//         }
+        }
 
-//         transition: 300ms;
-//         cursor: pointer;
-//         &:hover
-//         {
-//             filter: brightness(115%);
-//         }
-//     }
+        transition: 300ms;
+        cursor: pointer;
+        &:hover
+        {
+            filter: brightness(115%);
+        }
+    }
 
-//     .BannerGrid
-//     {
-//         height: 100%;
-//         position: relative;
-//     }
+    .BannerGrid
+    {
+        height: 100%;
+        position: relative;
+    }
 
-//     .Content
-//     {
-//         color: white;
-//         background-color: $dark-red;
-//         height: 100%;
+    .Content
+    {
+        color: white;
+        background-color: $dark-red;
+        height: 100%;
         
-//         position: relative;
+        position: relative;
 
-//         cursor: pointer;
+        cursor: pointer;
 
-//         padding: 30px;
+        padding: 30px;
 
-//         transition: 300ms;
+        transition: 300ms;
 
-//         &:hover, &:active
-//         {
-//             background-color: $dark-red-active;
+        &:hover, &:active
+        {
+            background-color: $dark-red-active;
 
-//             .ViewButton
-//             {
-//                 background-color: $almost-white;
-//                 color: $dark-red
-//             }
-//         }
+            .ViewButton
+            {
+                background-color: $almost-white;
+                color: $dark-red
+            }
+        }
 
-//         .Title
-//         {
-//             font-size: $huge-font-size;
-//             font-weight: 500;
-//         }
+        .Title
+        {
+            font-size: $huge-font-size;
+            font-weight: 500;
+        }
 
-//         .Caption
-//         {
-//             margin-top: 10px;
-//             font-size: $bigger-font-size;
-//         }
+        .Caption
+        {
+            margin-top: 10px;
+            font-size: $bigger-font-size;
+        }
 
-//         .ViewButton
-//         {
-//             margin-top: 40px;
-//             color: white;
+        .ViewButton
+        {
+            margin-top: 40px;
+            color: white;
 
-//             font-size: $header-font-size;
-//             border: 3px solid white;
-//             text-transform: capitalize;
+            font-size: $header-font-size;
+            border: 3px solid white;
+            text-transform: capitalize;
 
-//             transition: 200ms;
-//         }
-//     }
-// }
+            transition: 200ms;
+        }
+    }
+}
+
+
+// 커스텀 스타일
+.carousel{
+    width: 98vw;
+    margin: 0px auto;
+}
