@@ -23,12 +23,11 @@
 
 }
 
-.from_group{
-    margin: 5px;
-}
 
 .inner_form{
+    width: 100%;
     border-radius: 5px;
+    border: 0.5px solid #d6deeb;
 }
 
 .input_group{
@@ -37,7 +36,10 @@
     background-color: #e8f0fe;
     padding: 14px 18px 14px 18px;
     color: #000000;
-    border: 0.5px solid #d6deeb;
+    border-bottom: 0.5px solid #d6deeb;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 .input_solo{
@@ -51,6 +53,13 @@
     border-radius: 5px;
 }
 
+.button_group{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
 
 .signin_button{
     width: 100%;

@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Route, Link } from "react-router-dom";
 import "../styles/signup.scss";
 
+
 const Signup = (props) => {
   return (
     <React.Fragment>
@@ -14,7 +15,8 @@ const Signup = (props) => {
 
         <div className="container">
           <div className="form_box">
-            <div className="form_group"> 
+            
+           
             <input
               className="input_solo"
               placeholder="아이디"
@@ -44,27 +46,12 @@ const Signup = (props) => {
               placeholder="이름"
               type="text"
             ></input>
-            <div>
-              <label>
-                {" "}
-                선택입력
-                <input
-                  className="input_solo"
-                  placeholder="출생년도"
-                  type="text"
-                ></input>
-              </label>
-              <div>
-                <button>남</button>
-                <button>여</button>
-              </div>
-            </div>
-            <div>
-              <button className="signin_button">동의안함</button>
+            <div className="button_group">
+              <button className="signin_button">뒤로가기</button>
               <button className="login_button">회원 가입 완료</button>
             </div>
           </div>
-          </div>
+          
         </div>
       </body>
     </React.Fragment>
