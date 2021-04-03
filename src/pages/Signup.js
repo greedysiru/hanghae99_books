@@ -16,7 +16,7 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
 
-  // 회원가입 버튼을 누르면 호출되는 함수
+  // 회원가입, API 호출
   const signup = () => {
     if (id === '' || pwd === '') {
       window.alert('회원가입에 필요한 모든 정보를 입력해주세요.');

@@ -7,8 +7,9 @@ import { history } from '../redux/configStore';
 
 // 페이지
 import Main from '../pages/Main';
-import Login from '../pages/Login'
-import Signup from '../pages/Signup'
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
+import Detail from '../pages/Detail';
 
 // Not Found
 import NotFound from '../pages/NotFound';
@@ -30,7 +31,7 @@ const App = (props) => {
           <Route path='/' exact component={Main} />
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
-
+          <Route path='/detail' exact component={Detail} />
           {/* Not Found */}
           <Route component={NotFound} />
         </Switch>

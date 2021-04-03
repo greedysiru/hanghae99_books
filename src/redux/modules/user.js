@@ -14,18 +14,25 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 // Initial state
 const initialState = {
-  user: null,
+  username: null,
   is_login: false,
 }
 
 
 
 
+// const logoutAPI = () => {
+//   return function (dispatch, getState, { history }) {
+//     auth.signOut().then(() => {
+//       dispatch(logOut());
+//       history.replace('/');
+//     })
+//   }
+// }
+
 // 회원 가입
 const signupAPI = (id, pwd, pwd_check) => {
   return function (dispatch, getState, { history }) {
-    // 회원 가입
-    console.log('request');
     const API = "http://seungwook.shop/user/signup";
 
     fetch(API, {
@@ -36,22 +43,55 @@ const signupAPI = (id, pwd, pwd_check) => {
       body: JSON.stringify({
         username: id,
         password: pwd,
-        checkpw: pwd_check,
+        passwordConfirm: pwd_check,
       })
     })
       .then((response) => response)
       .then((result) => {
+        dispatch(setUser({
+          id: id,
+        }))
         console.log(result);
         window.alert('회원가입 되었습니다.')
+        history.push('/')
       })
+  }
+}
 
+// 로그인
+const loginAPI = (id, pwd) => {
+  return function (dispatch, getState, { history }) {
+
+    const API = "http://seungwook.shop/user/login";
+    fetch(API, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: id,
+        password: pwd,
+      })
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (response.token) {
+          // 로컬스토리지 저장
+          localStorage.setItem('is-token', response.token);
+          window.alert('로그인되었습니다.')
+          history.push('/')
+        }
+      })
   }
 }
 
 // Reducers
 export default handleActions(
   {
-    // [SET_USER]: (state, action) => produce(state, (draft) =>)
+    [SET_USER]: (state, action) => produce(state, (draft) => {
+      draft.user = action.payload.user;
+      draft.is_login = true;
+    }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         draft.user = null;
@@ -62,13 +102,10 @@ export default handleActions(
 );
 
 
-
-
-
-
 // Action Creators export
 const actionCreators = {
   signupAPI,
+  loginAPI,
 };
 
 export { actionCreators };

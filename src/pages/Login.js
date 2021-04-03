@@ -1,10 +1,28 @@
 import React from "react";
 import "../styles/login.scss";
-import { ConnectedRouter } from 'connected-react-router';
-import { history } from '../redux/configStore';
+
+// 모듈
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 
 const Login = (props) => {
+  const dispatch = useDispatch();
+  // 로그인 정보
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+
   const { history } = props;
+
+  // 로그인, API 호출
+  const login = () => {
+    if (id === "" || pwd === "") {
+      window.alert('아이디 혹은 비밀번호가 공란입니다.');
+      return;
+    }
+    dispatch(userActions.loginAPI(id, pwd));
+  }
+
   return (
     <React.Fragment>
       <body className="login_body">
@@ -18,11 +36,19 @@ const Login = (props) => {
                 className="login_input"
                 placeholder="아이디"
                 type="text"
+                // 아이디 입력
+                onChange={(e) => {
+                  setId(e.target.value);
+                }}
               ></input>
               <input
                 className="login_input"
                 placeholder="비밀번호"
                 type="text"
+                // 비밀번호 입력
+                onChange={(e) => {
+                  setPwd(e.target.value);
+                }}
               ></input>
               <div className="text_box">
                 <div className="t_box"><input type="checkbox" />
@@ -32,7 +58,11 @@ const Login = (props) => {
             </div>
 
 
-            <button className="login_button">로그인</button>
+            <button
+              className="login_button"
+              // 로그인
+              onClick={login}
+            >로그인</button>
             <button className="signin_button"
               onClick={() => {
                 { history.push('/signup') }

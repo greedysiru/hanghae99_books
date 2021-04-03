@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Navigator from '../components/Navigator';
 import Slide from '../components/Slide';
 import Cards from '../components/Cards';
+import Footer from '../components/Footer';
 
 
 // 메인 페이지 컴포넌트
@@ -17,6 +18,7 @@ const Main = (props) => {
       <Navigator />
       <Slide />
       <Cards />
+      <Footer />
     </div>
   )
 };
