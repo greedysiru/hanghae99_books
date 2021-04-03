@@ -10,9 +10,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 const Cards = (props) => {
   return (
     <div className="cards">
-      <div>
-        <h1>일을 했는데 상처가 따라와요</h1>
-      </div>
+
       <Container >
         <Row>
           <Col>
