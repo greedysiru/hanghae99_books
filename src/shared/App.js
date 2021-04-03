@@ -4,9 +4,11 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { Route, Link, Switch } from 'react-router-dom';
 
+
 // 페이지
 import Main from '../pages/Main';
-
+import Login from '../pages/Login'
+import Signup from '../pages/Signup'
 
 // Not Found
 import NotFound from '../pages/NotFound';
@@ -22,6 +24,8 @@ const App = (props) => {
       <Switch>
         {/* <Route path="/" */}
         <Route path='/' exact component={Main} />
+        <Route path='/login' exact component={Login} />
+        <Route path='/signup' exact component={Signup} />
 
         {/* Not Found */}
         <Route component={NotFound} />
