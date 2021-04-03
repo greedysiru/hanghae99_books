@@ -13,36 +13,39 @@ const Header = (props) => {
 
   const { history } = props;
   return (
-    <div className="header">
-      <nav className="navbar navbar-expand-md navbar-light">
-        <a className="navbar-brand" href="#">RIDI Select</a>
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <a className="nav-link" href="#">RIDIBOOKS</a>
-          </li>
-        </ul>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            {/* 로그인 상태이면 로그아웃 표시하기 */}
-            {is_login ?
-              (<a className="nav-link"
-                onClick={() => {
-                  { window.alert('로그아웃 구현하기') }
-                }}
-              >로그아웃</a>)
-              :
-              (<a className="nav-link"
-                onClick={() => {
-                  { history.push('/login') }
-                }}
-              >로그인</a>)
-            }
+    <React.Fragment>
+      <div className="header">
+        <nav className="navbar navbar-expand-md navbar-light">
+          <a className="navbar-brand" href="#">RIDI Select</a>
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="#">RIDIBOOKS</a>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              {/* 로그인 상태이면 로그아웃 표시하기 */}
+              {is_login ?
+                (<a className="nav-link"
+                  onClick={() => {
+                    { window.alert('로그아웃 구현하기') }
+                  }}
+                >로그아웃</a>)
+                :
+                (<a className="nav-link"
+                  onClick={() => {
+                    { history.push('/login') }
+                  }}
+                >로그인</a>)
+              }
 
-          </li>
-        </ul>
+            </li>
+          </ul>
 
-      </nav>
-    </div>
+        </nav>
+      </div>
+      <hr></hr>
+    </React.Fragment>
   )
 };
 

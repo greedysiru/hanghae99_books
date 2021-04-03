@@ -8,6 +8,7 @@ import { Route, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BookInfo from '../components/BookInfo';
+import Description from '../components/Description';
 
 
 
@@ -18,6 +19,7 @@ const Detail = (props) => {
     <div className="detail">
       <Header></Header>
       <BookInfo></BookInfo>
+      <Description></Description>
       <Footer></Footer>
     </div>
   )

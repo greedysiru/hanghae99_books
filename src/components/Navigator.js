@@ -7,7 +7,6 @@ import '../styles/navigator.scss';
 const Navigator = (props) => {
   return (
     <div>
-      <hr className="navigator__hr"></hr>
       <div className="navigator">
         <nav className="navbar navbar-expand-md navbar-light">
 

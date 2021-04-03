@@ -18,6 +18,7 @@ const BookInfo = (props) => {
   const bookImg = "https://img.ridicdn.net/cover/620000190/xxlarge?dpi=xxhdpi";
   return (
     <div
+      // 블러 배경
       className="bookInfo"
       style={{ backgroundImage: `url(${bookImg})` }}
     >
@@ -25,20 +26,25 @@ const BookInfo = (props) => {
         <div className="bookInfo__contents">
           <div
             className="bookInfo__contents__img"
+            // 책 이미지
             style={{ backgroundImage: `url(${bookImg})` }}
           >
           </div>
           <div className="bookInfo__contents__col">
             <div className="bookInfo__contents__titile">
+              {/* 책 제목 */}
               하우스 오브 갓
             </div>
             <div className="bookInfo__contents__info">
+              {/* 저자 및 출판사 정보 등 */}
               <span >사무엘 셈</span>
             </div>
             <div className="bookInfo__contnets__star">
+              {/* 별점 표시 */}
               ⭐️
           </div>
             <div className="bookInfo__contents__like">
+              {/* 좋아요 버튼 */}
               <Button variant="contained">
                 <FavoriteBorderIcon
                   color="primary"
