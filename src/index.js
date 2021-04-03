@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './shared/App';
 import reportWebVitals from './reportWebVitals';
 
+
 // 부트스트랩
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,14 +13,15 @@ import './styles/basic.scss';
 // 스토어
 import store from './redux/configStore';
 
-// 라우터
-import { BrowserRouter } from 'react-router-dom';
+// Provider
+import { Provider } from 'react-redux';
+
 
 ReactDOM.render(
   // 스토어 연동
-  <BrowserRouter store={store}>
+  <Provider store={store}>
     <App />
-  </BrowserRouter>,
+  </Provider>,
   document.getElementById('root')
 );
 

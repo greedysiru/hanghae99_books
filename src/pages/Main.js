@@ -7,12 +7,13 @@ import Slide from '../components/Slide';
 import Cards from '../components/Cards';
 
 
-
 // 메인 페이지 컴포넌트
 const Main = (props) => {
+
+
   return (
     <div>
-      <Header />
+      <Header history={props.history} />
       <Navigator />
       <Slide />
       <Cards />
