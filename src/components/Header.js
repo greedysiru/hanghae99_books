@@ -44,7 +44,7 @@ const Header = (props) => {
 
         </nav>
       </div>
-      <hr></hr>
+      <hr className="headerLine"></hr>
     </React.Fragment>
   )
 };

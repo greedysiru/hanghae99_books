@@ -12,6 +12,9 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from '@material-ui/core/Button';
 
+// elements
+import Star from '../elements/Star';
+
 // 책정보 컴포넌트
 const BookInfo = (props) => {
   // 이미지
@@ -41,8 +44,8 @@ const BookInfo = (props) => {
             </div>
             <div className="bookInfo__contnets__star">
               {/* 별점 표시 */}
-              ⭐️
-          </div>
+              <Star></Star>
+            </div>
             <div className="bookInfo__contents__like">
               {/* 좋아요 버튼 */}
               <Button variant="contained">

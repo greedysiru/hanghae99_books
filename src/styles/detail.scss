@@ -1,0 +1,14 @@
+.detailLine{
+  width: 70vw;
+  margin: 35px auto;
+  border: 1px solid #E9EAED;
+}
+
+.detail__comment{
+  width: 70vw;
+  display: flex;
+  margin: auto;
+  .star__score{
+    width: 15%;
+  }
+}
