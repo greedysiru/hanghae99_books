@@ -5,21 +5,38 @@ import "../styles/header.scss";
 
 // 리덕스
 import { useSelector } from 'react-redux';
+// 로그아웃
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+
+// 페이지 이동을 위한 history
+import { history } from '../redux/configStore';
+
 
 // 헤더 컴포넌트
 const Header = (props) => {
+  const dispatch = useDispatch();
   // 로그인 여부 가져오기
   const is_login = useSelector(state => state.user.is_login);
 
-  const { history } = props;
+  // 로그아웃
+  const logOut = () => {
+    console.log('로그아웃')
+    dispatch(userActions.logoutStorage());
+  }
+
   return (
     <React.Fragment>
       <div className="header">
         <nav className="navbar navbar-expand-md navbar-light">
-          <a className="navbar-brand" href="#">RIDI Select</a>
+          <a className="navbar-brand"
+            onClick={() => { history.push('/') }}
+          >RIDI Select</a>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">RIDIBOOKS</a>
+              <a className="nav-link"
+                onClick={() => { history.push('/') }}
+              >RIDIBOOKS</a>
             </li>
           </ul>
           <ul className="navbar-nav">
@@ -27,9 +44,7 @@ const Header = (props) => {
               {/* 로그인 상태이면 로그아웃 표시하기 */}
               {is_login ?
                 (<a className="nav-link"
-                  onClick={() => {
-                    { window.alert('로그아웃 구현하기') }
-                  }}
+                  onClick={logOut}
                 >로그아웃</a>)
                 :
                 (<a className="nav-link"

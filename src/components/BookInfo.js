@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { Route, Link } from 'react-router-dom';
 
 // SCSS
-import '../styles/BookInfo.scss';
+import '../styles/book-info.scss';
 
 // 머터리얼 ui
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';

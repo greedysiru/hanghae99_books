@@ -19,8 +19,6 @@ const initialState = {
 }
 
 
-
-
 // const logoutAPI = () => {
 //   return function (dispatch, getState, { history }) {
 //     auth.signOut().then(() => {
@@ -48,11 +46,8 @@ const signupAPI = (id, pwd, pwd_check) => {
     })
       .then((response) => response)
       .then((result) => {
-        dispatch(setUser({
-          id: id,
-        }))
         console.log(result);
-        window.alert('회원가입 되었습니다.')
+        window.alert('회원가입 되었습니다. 로그인해주세요.')
         history.push('/')
       })
   }
@@ -77,19 +72,35 @@ const loginAPI = (id, pwd) => {
       .then(response => {
         if (response.token) {
           // 로컬스토리지 저장
-          localStorage.setItem('is-token', response.token);
-          window.alert('로그인되었습니다.')
-          history.push('/')
+          localStorage.setItem(id, response.token);
+          dispatch(setUser({
+            username: id,
+          }))
+          window.alert('로그인되었습니다.');
         }
       })
   }
 }
 
+// 로그아웃
+// 로컬스토리지에서 토큰 지우기
+const logoutStorage = () => {
+  return function (dispatch, getState, { history }) {
+    const id = getState().user.username;
+    localStorage.removeItem(id);
+    window.alert('로그아웃 되었습니다.');
+    // 로그아웃 후 메인페이지로
+    history.replace('/');
+  }
+}
+
+
+
 // Reducers
 export default handleActions(
   {
     [SET_USER]: (state, action) => produce(state, (draft) => {
-      draft.user = action.payload.user;
+      draft.username = action.payload.user.username;
       draft.is_login = true;
     }),
     [LOG_OUT]: (state, action) =>
@@ -106,6 +117,7 @@ export default handleActions(
 const actionCreators = {
   signupAPI,
   loginAPI,
+  logoutStorage,
 };
 
 export { actionCreators };

@@ -17,10 +17,6 @@ import NotFound from '../pages/NotFound';
 // 부트스트랩
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// 리덕스
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
-
 
 const App = (props) => {
   return (

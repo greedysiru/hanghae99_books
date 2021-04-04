@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from 'react-bootstrap';
 
 // SCSS
-import '../styles/textfield.scss'
+import '../styles/text-field.scss'
 
 // 텍스트를 입력하는 폼 컴포넌트
 const TextFiled = (props) => {
@@ -21,6 +21,10 @@ const TextFiled = (props) => {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const submitReview = () => {
+    console.log(value)
+  }
 
   return (
     <div className="textfield">
@@ -33,15 +37,19 @@ const TextFiled = (props) => {
         variant="outlined"
         size="large"
         style={{
-          width: '100%'
+          width: '100%',
+          marginBottom: '5px',
         }}
       />
       <Button
         variant="primary"
         style={{
-          width: "20%"
+          height: "30px",
+          width: "95px",
+          fontSize: "12px",
         }}
-      >Primary</Button>
+        onClick={submitReview}
+      >리뷰 남기기</Button>
     </div>
   )
 };

@@ -17,7 +17,7 @@ const Main = (props) => {
       <Header history={props.history} />
       <Navigator />
       <Slide />
-      <Cards />
+      <Cards history={props.history} />
       <Footer />
     </div>
   )
