@@ -35,7 +35,7 @@ const TextFiled = (props) => {
         value={value}
         onChange={handleChange}
         variant="outlined"
-        size="large"
+        size="medium"
         style={{
           width: '100%',
           marginBottom: '5px',

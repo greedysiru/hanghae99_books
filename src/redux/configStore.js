@@ -6,6 +6,7 @@ import { connectRouter } from "connected-react-router";
 
 // Modules
 import User from "./modules/user";
+import Books from "./modules/books";
 
 
 export const history = createBrowserHistory();
@@ -13,6 +14,7 @@ export const history = createBrowserHistory();
 // export한 Reducer를 모으기
 const rootReducer = combineReducers({
   user: User,
+  books: Books,
   router: connectRouter(history),
 });
 

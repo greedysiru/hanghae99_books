@@ -2,7 +2,7 @@
 import { createAction, handleActions } from "redux-actions";
 // 불변성 관리 패키지
 import { produce } from "immer";
-import Signup from "../../pages/Signup";
+
 // Actions
 const LOG_OUT = "LOG_OUT";
 const SET_USER = 'SET_USER';
@@ -31,7 +31,7 @@ const initialState = {
 // 회원 가입
 const signupAPI = (id, pwd, pwd_check) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://seungwook.shop/user/signup";
+    const API = "http://seungwook.shop/api/signup";
 
     fetch(API, {
       method: "POST",
@@ -57,7 +57,7 @@ const signupAPI = (id, pwd, pwd_check) => {
 const loginAPI = (id, pwd) => {
   return function (dispatch, getState, { history }) {
 
-    const API = "http://seungwook.shop/user/login";
+    const API = "http://seungwook.shop/api/login";
     fetch(API, {
       method: "POST",
       headers: {
@@ -77,6 +77,7 @@ const loginAPI = (id, pwd) => {
             username: id,
           }))
           window.alert('로그인되었습니다.');
+          history.back();
         }
       })
   }
@@ -88,6 +89,7 @@ const logoutStorage = () => {
   return function (dispatch, getState, { history }) {
     const id = getState().user.username;
     localStorage.removeItem(id);
+    dispatch(logOut());
     window.alert('로그아웃 되었습니다.');
     // 로그아웃 후 메인페이지로
     history.replace('/');
