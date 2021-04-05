@@ -58,6 +58,7 @@ const updateStartEndPage = (start, end) => {
 const bookListAPI = () => {
   return function (dispatch, getState, { history }) {
     const current = getState().books.paging.current;
+    // const API = `http://seungwook.shop/api/books?sort=createdAt&page=${current}&size=24`;
     const API = `http://seungwook.shop/api/books?page=${current}&size=24`;
     fetch(API, {
       method: 'GET',
@@ -66,7 +67,6 @@ const bookListAPI = () => {
         return response.json();
       })
       .then(_book_list => {
-        console.log(_book_list);
         dispatch(setBooks(_book_list));
       });
 
@@ -105,6 +105,7 @@ export default handleActions(
 const actionCreators = {
   updateCurrentPage,
   updateStartEndPage,
+  bookListAPI,
 };
 
 export { actionCreators };

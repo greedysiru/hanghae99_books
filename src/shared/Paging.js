@@ -23,10 +23,17 @@ const Paging = (props) => {
   const { start, end, current } = useSelector((state) => state.books.paging);
   console.log(start, end, current)
 
+  // 총 페이지 수 가져오기
+  const totalPages = useSelector((state) => state.books.book_list.totalPages);
+
+
 
   // 현재 페이지 책 목록 가져오기
   React.useEffect(() => {
-    console.log(current);
+    // 총 페이지가 10 이하이면 end에 적용하기
+    if (totalPages <= 10) {
+      dispatch(booksActions.updateStartEndPage(start, totalPages));
+    }
   })
 
   // 페이지 이동
@@ -38,6 +45,7 @@ const Paging = (props) => {
   const indexMoveDown = () => {
     // 10 이하이면 그대로 두기
     if (current <= 10) {
+
       return
     } else {
       // 10 페이지 전으로
@@ -74,7 +82,12 @@ const Paging = (props) => {
   return (
     <div className="paging">
       <Pagination>
-        <Pagination.First />
+        <Pagination.First
+          // 처음 페이지로 가기
+          onClick={() => {
+            pageMove(1)
+          }}
+        />
         {/* end가 10 이하이면 나타내지 않기 */}
         {end <= 10 ? (null) : (
           <Pagination.Prev
@@ -85,13 +98,21 @@ const Paging = (props) => {
           />
         )}
         {items}
-        <Pagination.Next
-          // 이후 인덱스 이동
+        {/* 총 페이지 수가 10이하이면 렌더링하지 않기 */}
+        {totalPages <= 10 ? (null) : (
+          <Pagination.Next
+            // 이후 인덱스 이동
+            onClick={() => {
+              indexMoveUp()
+            }}
+          />
+        )}
+        <Pagination.Last
+          // 처음 페이지로 가기
           onClick={() => {
-            indexMoveUp()
+            pageMove(totalPages)
           }}
         />
-        <Pagination.Last />
       </Pagination>
     </div>
   );

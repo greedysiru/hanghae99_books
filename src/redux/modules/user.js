@@ -77,7 +77,7 @@ const loginAPI = (id, pwd) => {
             username: id,
           }))
           window.alert('로그인되었습니다.');
-          history.back();
+          history.push('/');
         }
       })
   }
