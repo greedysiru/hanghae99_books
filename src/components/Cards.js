@@ -42,7 +42,7 @@ const Cards = (props) => {
               style={{
                 width: '120px',
                 border: 'none',
-                margin: '80px 7.5px 0px 7.5px',
+                margin: '80px 0px 0px 0px',
                 cursor: 'pointer',
               }}
               key={info.id}

@@ -1,11 +1,12 @@
 .reviewwrite{
-  width:85%;
+  width:70vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  min-width: 320px;
+  max-width: 800px;
   .star__rating{
     margin: 0px auto 15px auto;
   }
-
 }
