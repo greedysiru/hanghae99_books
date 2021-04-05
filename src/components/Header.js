@@ -25,6 +25,10 @@ const Header = (props) => {
     dispatch(userActions.logoutStorage());
   }
 
+  React.useEffect(() => {
+    dispatch(userActions.logInCheckStorage());
+  })
+
   return (
     <React.Fragment>
       <div className="header">

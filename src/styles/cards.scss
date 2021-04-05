@@ -1,7 +1,11 @@
 .cards{
   margin-right: auto;
   margin-left: auto;
-  
+  width: 70vw;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
   span{
     width: 120px;
     margin-top: 5px;

@@ -9,7 +9,11 @@ import { actionCreators as booksActions } from "../redux/modules/books";
 
 
 // 부트스트랩
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, CardColumns } from 'react-bootstrap';
+
+// 최소 단위 컴포넌트
+import { ElSpinner } from '../elements';
+
 
 // 카드 컴포넌트
 const Cards = (props) => {
@@ -22,59 +26,46 @@ const Cards = (props) => {
   const book_list = useSelector((state) => state.books.book_list.content)
   console.log(book_list);
 
-  console.log(book_list.length)
-
-  // 책 카드를 넣을 배열
-  let bookCard = [];
-  // 현재 책 목록의 길이
-  const bookCardLength = book_list.length;
-  // 받아온 책 리스트를 하나하나 접근하여 리액트 요소로 만들기
-  for (let i = 0; i < bookCardLength; i++) {
-    // i가 6으로 나누어 1이 남는 경우 한 줄의 시작
-    // if (i % 6 === 1) {
-    bookCard.push(
-      <Row>
-        <Col>
-          <Card
-            style={{ width: '120px' }}
-            //  키값
-            key={book_list[i].id}
-          >
-            <Card.Img
-              onClick={() => {
-                // 책 고유번호로 링크
-                { history.push(`/detail/${book_list[i].id}`) }
+  // 로딩이 안되었을 시 대기
+  if (!book_list) {
+    return (
+      <ElSpinner />
+    )
+  } else {
+    // map으로 서버로부터 받아온 책 정보 하나씩 넣기
+    // 정렬은 felx-wrap 으로 적용
+    return (
+      <div className="cards">
+        {book_list.map((info, idx) => {
+          return (
+            <Card
+              style={{
+                width: '120px',
+                border: 'none',
+                margin: '80px 7.5px 0px 7.5px',
+                cursor: 'pointer',
               }}
-              variant="top" src={book_list[i].imgUrl} width="120px" />
-          </Card>
-          <span>{book_list[i].title}</span>
-        </Col>
-      </Row>
-    );
-    // } else if (i % 6 === 0) {
+              key={info.id}
+            >
+              <Card.Img
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+                }}
+                onClick={() => {
+                  { history.push(`/detail/${info.id}`) }
+                }}
+                variant="top"
+                src={info.imgUrl}
+                width="120px" />
+              <span>{info.title}</span>
+            </Card>
+          )
+        })}
+      </div>
+    )
 
-    // }
   }
 
-  return (
-    <div className="cards">
-      <Container >
-        {/* <Row>
-          <Col>
-            <Card style={{ width: '120px' }}>
-              <Card.Img
-                onClick={() => {
-                  { history.push('/detail') }
-                }}
-                variant="top" src="https://img.ridicdn.net/cover/1568000061/small 50w,https://img.ridicdn.net/cover/1568000061/small 90w,https://img.ridicdn.net/cover/1568000061/small?dpi=xhdpi 120w,https://img.ridicdn.net/cover/1568000061/large 165w,https://img.ridicdn.net/cover/1568000061/small?dpi=xxhdpi 180w,https://img.ridicdn.net/cover/1568000061/large?dpi=xhdpi 220w,https://img.ridicdn.net/cover/1568000061/xlarge 225w,https://img.ridicdn.net/cover/1568000061/xlarge?dpi=xhdpi 300w,https://img.ridicdn.net/cover/1568000061/large?dpi=xxhdpi 330w,https://img.ridicdn.net/cover/1568000061/xlarge?dpi=xxhdpi 450w,https://img.ridicdn.net/cover/1568000061/xxlarge 480w,https://img.ridicdn.net/cover/1568000061/xxlarge?dpi=xhdpi 640w,https://img.ridicdn.net/cover/1568000061/xxlarge?dpi=xxhdpi 960w" width="120px" />
-            </Card>
-            <span>알지 못하는 아이의 죽음</span>
-          </Col>
-        </Row> */}
-        {bookCard}
-      </Container>
-    </div>
-  )
 };
 
 export default Cards;

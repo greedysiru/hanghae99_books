@@ -30,7 +30,7 @@ const Main = (props) => {
     <div>
       <Header history={props.history} />
       <Navigator />
-      <Slide />
+      {/* <Slide /> */}
       <Cards history={props.history} />
       <Paging />
       <Footer />

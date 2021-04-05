@@ -5,7 +5,8 @@ import Button from "./Button";
 import Star from './Star';
 import StarRating from './StarRating';
 import TextField from './TextField';
+import ElSpinner from './ElSpinner';
 
 
 
-export { Grid, Text, Input, Button, StarRating, Star, TextField };
+export { Grid, Text, Input, Button, StarRating, Star, TextField, ElSpinner };

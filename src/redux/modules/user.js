@@ -12,21 +12,12 @@ const SET_USER = 'SET_USER';
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
+
 // Initial state
 const initialState = {
   username: null,
   is_login: false,
 }
-
-
-// const logoutAPI = () => {
-//   return function (dispatch, getState, { history }) {
-//     auth.signOut().then(() => {
-//       dispatch(logOut());
-//       history.replace('/');
-//     })
-//   }
-// }
 
 // 회원 가입
 const signupAPI = (id, pwd, pwd_check) => {
@@ -72,7 +63,8 @@ const loginAPI = (id, pwd) => {
       .then(response => {
         if (response.token) {
           // 로컬스토리지 저장
-          localStorage.setItem(id, response.token);
+          localStorage.setItem("is_token", response.token);
+          localStorage.setItem("login_id", id);
           dispatch(setUser({
             username: id,
           }))
@@ -88,7 +80,8 @@ const loginAPI = (id, pwd) => {
 const logoutStorage = () => {
   return function (dispatch, getState, { history }) {
     const id = getState().user.username;
-    localStorage.removeItem(id);
+    localStorage.removeItem("is_token");
+    localStorage.removeItem("login_id")
     dispatch(logOut());
     window.alert('로그아웃 되었습니다.');
     // 로그아웃 후 메인페이지로
@@ -96,8 +89,23 @@ const logoutStorage = () => {
   }
 }
 
-
-
+// 로그인 체크
+const logInCheckStorage = () => {
+  return function (dispatch, getState, { history }) {
+    // 토큰 가져오기
+    const token = localStorage.getItem('is_token');
+    const id = localStorage.getItem('login_id');
+    // 토큰이 없으면 재로그인 alert
+    // 있다면 유지
+    if (!token) {
+      return
+    } else {
+      dispatch(setUser({
+        username: id,
+      }))
+    }
+  };
+};
 // Reducers
 export default handleActions(
   {
@@ -120,6 +128,7 @@ const actionCreators = {
   signupAPI,
   loginAPI,
   logoutStorage,
+  logInCheckStorage,
 };
 
 export { actionCreators };
