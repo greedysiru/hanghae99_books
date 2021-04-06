@@ -36,18 +36,17 @@ const Detail = (props) => {
   // 로그인 여부 가져오기
   const is_login = useSelector(state => state.user.is_login);
 
-
   return (
     <div className="detail">
       <Header></Header>
       {/* {book_info? ():()} */}
-      <BookInfo></BookInfo>
+      <BookInfo ></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>
       <div className="detail__review">
         <div className="star__score">
           <span>구매자 별점</span>
-          <Star></Star>
+          <Star ></Star>
         </div>
         {/* 로그인시만 입력 가능하게 하기*/}
         {is_login ? (<ReviewWrite />) : null}

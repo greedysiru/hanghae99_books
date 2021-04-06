@@ -50,7 +50,7 @@ const ReviewList = (props) => {
             <div>
               <div className="reviewlist">
                 <div className="reviewlist__header">
-                  <Star starRate={p.starRate} />
+                  <Star is_comment={true} starRate={p.starRate} />
                   <span
                     className="reviewlist__header__text"
                   >{p.account.username}</span>
