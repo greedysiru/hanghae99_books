@@ -6,6 +6,11 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
 
+
+// 리덕스
+import { actionCreators as reviewActions } from "../redux/modules/review";
+import { useSelector, useDispatch } from 'react-redux';
+
 // 별점 입력 최소 컴포넌트
 
 // 라벨
@@ -32,6 +37,7 @@ export default function StarRating() {
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.root}
@@ -56,6 +62,7 @@ export default function StarRating() {
         precision={1}
         onChange={(event, newValue) => {
           setValue(newValue);
+          dispatch(reviewActions.setStarRating(newValue));
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);

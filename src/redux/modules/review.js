@@ -133,7 +133,6 @@ export default handleActions(
 const actionCreators = {
   setStarRating,
   writeText,
-  setStar,
   setText,
   writeReviewAPI,
   getReviewAPI,
