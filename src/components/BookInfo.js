@@ -59,7 +59,9 @@ const BookInfo = (props) => {
             </div>
             <div className="bookInfo__contnets__star">
               {/* 별점 표시 */}
-              <Star></Star>
+              <Star
+                avgStarRate={props.avgStarRate}
+              ></Star>
             </div>
             <div className="bookInfo__contents__like">
               {/* 좋아요 버튼 */}
