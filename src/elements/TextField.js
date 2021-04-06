@@ -18,8 +18,10 @@ const TextFiled = (props) => {
   const dispatch = useDispatch()
   const id = useSelector((state) => state.books.book_info.id)
   const [value, setValue] = React.useState('');
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange = (e) => {
+    setValue(e.target.value)
+    dispatch(reviewActions.setText(e.target.value))
+
   };
 
   const submitReview = () => {
