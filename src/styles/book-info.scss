@@ -47,6 +47,23 @@
            margin-top: 35px;
          }
       }
+
+      .bookInfo__contnets__star{
+        display: flex;
+        align-items: center;
+        .bookInfo__contents__star__text{
+          color:#FA722E;
+          font-size: 13px;
+          font-weight: 800;
+        }
+        .bookInfo__contents__star__num{
+          color:black;
+          font-size: 13px;
+          font-weight: 800;
+        }
+      }
+
+      
   }
 }
 }

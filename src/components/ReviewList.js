@@ -19,48 +19,56 @@ const ReviewList = (props) => {
   // 해당 페이지의 책 id 가져오기
   const id = props.id;
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(reviewActions.getReviewAPI(id))
-  }, [])
 
   // 코멘트 정보 가져오기
   const comment_list = useSelector((state) => state.review.review_info.comment);
+
+  // React.useEffect(() => {
+  //   // 리뷰정보 가져오기
+  //   if (!comment_list) {
+  //     console.log(comment_list)
+  //     dispatch(reviewActions.getReviewAPI(id));
+  //   }
+  // });
 
   if (!comment_list) {
     return <ElSpinner />
   }
 
-  return (
-    <div>
-      {comment_list.map((p, idx) => {
-        return (
-          <div>
-            <div className="reviewlist">
-              <div className="reviewlist__header">
-                <Star starRate={p.starRate} />
-                <span
-                  className="reviewlist__header__text"
-                >{p.account.username}</span>
-                <span
-                  className="reviewlist__header__date"
-                // 정규식으로 문자열 처리
-                >{p.modifiedAt.split('T')[0].replace(/-/gi, '.')}</span>
-              </div>
-              <div>
-                {p.comment}
-              </div>
-            </div >
-            <hr className="reviewlist__hr" ></hr>
-          </div>
-        )
-      })
-      }
-    </div>
+  if (comment_list === null) {
+    return null
+  } else {
+    return (
+      <div>
+        {comment_list.map((p, idx) => {
+          return (
+            <div>
+              <div className="reviewlist">
+                <div className="reviewlist__header">
+                  <Star starRate={p.starRate} />
+                  <span
+                    className="reviewlist__header__text"
+                  >{p.account.username}</span>
+                  <span
+                    className="reviewlist__header__date"
+                  // 정규식으로 문자열 처리
+                  >{p.modifiedAt.split('T')[0].replace(/-/gi, '.')}</span>
+                </div>
+                <div>
+                  {p.comment}
+                </div>
+              </div >
+              <hr className="reviewlist__hr" ></hr>
+            </div>
+          )
+        })
+        }
+      </div>
 
 
-  )
+    )
 
-
+  }
 
 };
 

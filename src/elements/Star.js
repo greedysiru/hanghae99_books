@@ -29,7 +29,8 @@ const Star = (props) => {
       <Rating
         name="half-rating-read"
         style={{
-          fontSize: "18px"
+          fontSize: "18px",
+          color: "#FA722E"
         }}
         defaultValue={starRate}
         precision={0.5}

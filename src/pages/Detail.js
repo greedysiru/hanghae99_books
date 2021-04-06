@@ -18,6 +18,7 @@ import ReviewList from '../components/ReviewList';
 // 리덕스 접근
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as booksActions } from "../redux/modules/books";
+import { actionCreators as reviewActions } from "../redux/modules/review";
 
 
 
@@ -34,10 +35,6 @@ const Detail = (props) => {
   // 로그인 여부 가져오기
   const is_login = useSelector(state => state.user.is_login);
 
-  // 해당 서적 별점 평균 정보 가져오기
-  const avgStarRage = useSelector((state) => state.review.review_info.avgStarRage);
-
-
 
   return (
     <div className="detail">
@@ -50,7 +47,7 @@ const Detail = (props) => {
         {is_login ? (<ReviewWrite />) : null}
       </div>
       <hr className="detailLine"></hr>
-      <ReviewList id={id} />
+      {/* <ReviewList id={id} /> */}
       <Footer></Footer>
     </div>
   )

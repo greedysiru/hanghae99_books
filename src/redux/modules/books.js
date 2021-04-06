@@ -6,6 +6,10 @@ import { produce } from "immer";
 // axios
 import axios from 'axios';
 
+// 리뷰 액션
+import { actionCreators as reviewActions } from "./review";
+
+
 // Actions
 // 보여줄 책 리스트들 다룰 액션
 const SET_BOOKS = "SET_BOOKS";
@@ -113,7 +117,11 @@ const bookInfoAPI = (book_id) => {
       .then((_book_info) => {
         // 리덕스에 담기
         dispatch(getBookInfo(_book_info));
-      }).catch((error) => {
+      })
+      .then(
+        dispatch(reviewActions.getReviewAPI(book_id))
+      )
+      .catch((error) => {
         window.alert('책 정보를 불러오지 못했습니다. 재시도해주세요.')
         console.log(error);
       });

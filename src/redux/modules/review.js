@@ -7,6 +7,7 @@ import { produce } from "immer";
 import axios from 'axios';
 
 
+
 // Actions
 // 별점을 기록하는 액션
 const SET_STAR = "SET_STAR";
@@ -89,15 +90,17 @@ const getReviewAPI = (id) => {
   return function (dispatch, getState, { history }) {
     console.log(id)
     const API = `http://seungwook.shop/api/books/${id}/comments`;
-
     axios.get(API)
       .then((response) => {
-        console.log(response)
         return response.data
       })
       .then((_review) => {
-        console.log(_review)
         // 리덕스에 담기
+        // 코멘트가 없는 경우
+        if (!_review) {
+          dispatch(getReview(null));
+          return
+        }
         dispatch(getReview(_review));
       }).catch((error) => {
         window.alert('리뷰 정보를 불러올 수 없습니다. 다시 시도해주세요.');
@@ -119,7 +122,6 @@ export default handleActions(
         draft.text = action.payload.review.text
       }),
     [GET_REVIEW]: (state, action) => produce(state, (draft) => {
-      console.log(action.payload)
       draft.review_info = action.payload.review
     })
   },

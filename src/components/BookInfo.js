@@ -25,16 +25,17 @@ import { ElSpinner } from '../elements';
 const BookInfo = (props) => {
 
   // 해당 서적 별점 평균 정보 가져오기
-  const avgStarRage = useSelector((state) => state.review.review_info.avgStarRage);
+  const avgStarRate = useSelector((state) => state.review.review_info.avgStarRate);
+  // 해당 서적 리뷰 수
+  const reviewNum = useSelector((state) => state.review.review_info.comment);
   // 책 정보 가져오기
   const { id, imgUrl, title, bookElement } = useSelector(state => state.books.book_info);
   // 로딩끝나기전에는 스피너 표시
-  if (!imgUrl) {
+  if (!id) {
     return <ElSpinner />
   }
-
   const bookEtc = bookElement.split('·')
-
+  console.log(bookElement)
   return (
     <div
       // 블러 배경
@@ -64,8 +65,14 @@ const BookInfo = (props) => {
             <div className="bookInfo__contnets__star">
               {/* 별점 표시 */}
               <Star
-                starRate={avgStarRage}
+                starRate={avgStarRate}
               ></Star>
+              <span className="bookInfo__contents__star__text">
+                {avgStarRate} 점
+              </span>
+              <span className="bookInfo__contents__star__text">
+                {reviewNum}
+              </span>
             </div>
             <div className="bookInfo__contents__like">
               {/* 좋아요 버튼 */}
