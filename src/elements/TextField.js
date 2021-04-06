@@ -1,11 +1,6 @@
 import React from 'react';
 
-// 라우터
-import { withRouter } from 'react-router';
-import { Route, Link } from 'react-router-dom';
 
-// material ui
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 // 부트 스트랩
@@ -14,16 +9,21 @@ import { Button } from 'react-bootstrap';
 // SCSS
 import '../styles/text-field.scss'
 
+// 리덕스
+import { actionCreators as reviewActions } from "../redux/modules/review";
+import { useSelector, useDispatch } from 'react-redux';
+
 // 텍스트를 입력하는 폼 컴포넌트
 const TextFiled = (props) => {
-
+  const dispatch = useDispatch()
+  const id = useSelector((state) => state.books.book_info.id)
   const [value, setValue] = React.useState('');
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
   const submitReview = () => {
-    console.log(value)
+    dispatch(reviewActions.writeReviewAPI(id))
   }
 
   return (

@@ -19,7 +19,7 @@ import { Star } from '../elements'
 // 리덕스 접근
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as booksActions } from "../redux/modules/books";
-import { actionCreators as reviewActions } from "../redux/modules/review";
+
 
 
 

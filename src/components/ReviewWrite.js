@@ -10,9 +10,6 @@ import '../styles/review-write.scss';
 // elements
 import { StarRating, TextField } from '../elements';
 
-// components
-import ReviewList from '../components/ReviewList';
-
 // 리뷰 작성 컴포넌트
 const ReviewWrite = (props) => {
   return (
