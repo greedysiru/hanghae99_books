@@ -27,7 +27,7 @@ const Header = (props) => {
 
   React.useEffect(() => {
     dispatch(userActions.logInCheckStorage());
-  })
+  }, [])
 
   return (
     <React.Fragment>

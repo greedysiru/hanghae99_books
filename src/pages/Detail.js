@@ -1,8 +1,5 @@
 import React from 'react';
 
-// 라우터
-import { withRouter } from 'react-router';
-import { Route, Link } from 'react-router-dom';
 
 // scss
 import '../styles/detail.scss'
@@ -19,13 +16,33 @@ import ReviewList from '../components/ReviewList';
 import { Star } from '../elements'
 
 
+// 리덕스 접근
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as booksActions } from "../redux/modules/books";
+
+
+
 // 책의 정보, 별점,리뷰를 입력할 수 있는 페이지
 const Detail = (props) => {
-  console.log(props)
+  // 해당 페이지의 책 id 가져오기
+  const id = props.match.params.id;
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    // 서버로부터 책 정보 가져오기
+    dispatch(booksActions.bookInfoAPI(id));
+  }, []);
+  // 로그인 여부 가져오기
+  const is_login = useSelector(state => state.user.is_login);
+
+
+
+
 
   return (
     <div className="detail">
       <Header></Header>
+      {/* {book_info? ():()} */}
       <BookInfo></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>
@@ -34,11 +51,10 @@ const Detail = (props) => {
           <span>구매자 별점</span>
           <Star></Star>
         </div>
-        <ReviewWrite />
-
+        {/* 로그인시만 입력 가능하게 하기*/}
+        {is_login ? (<ReviewWrite />) : null}
       </div>
       <hr className="detailLine"></hr>
-      <ReviewList></ReviewList>
       <Footer></Footer>
     </div>
   )

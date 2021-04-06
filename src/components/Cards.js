@@ -5,11 +5,10 @@ import "../styles/cards.scss";
 
 // 리덕스 접근
 import { useSelector, useDispatch } from 'react-redux';
-import { actionCreators as booksActions } from "../redux/modules/books";
 
 
 // 부트스트랩
-import { Container, Row, Col, Card, CardColumns } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 // 최소 단위 컴포넌트
 import { ElSpinner } from '../elements';
@@ -24,8 +23,6 @@ const Cards = (props) => {
 
   // 책 목록 가져오기
   const book_list = useSelector((state) => state.books.book_list.content)
-  console.log(book_list);
-
   // 로딩이 안되었을 시 대기
   if (!book_list) {
     return (

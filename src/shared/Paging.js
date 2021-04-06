@@ -34,7 +34,7 @@ const Paging = (props) => {
     if (totalPages <= 10) {
       dispatch(booksActions.updateStartEndPage(start, totalPages));
     }
-  })
+  }, [])
 
   // 페이지 이동
   const pageMove = (number) => {

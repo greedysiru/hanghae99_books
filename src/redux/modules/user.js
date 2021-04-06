@@ -3,6 +3,10 @@ import { createAction, handleActions } from "redux-actions";
 // 불변성 관리 패키지
 import { produce } from "immer";
 
+// axios
+import axios from 'axios';
+
+
 // Actions
 const LOG_OUT = "LOG_OUT";
 const SET_USER = 'SET_USER';
@@ -24,23 +28,42 @@ const signupAPI = (id, pwd, pwd_check) => {
   return function (dispatch, getState, { history }) {
     const API = "http://seungwook.shop/api/signup";
 
-    fetch(API, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
+    axios.post(API,
+      {
+        "username": id,
+        "password": pwd,
+        "passwordConfirm": pwd_check,
       },
-      body: JSON.stringify({
-        username: id,
-        password: pwd,
-        passwordConfirm: pwd_check,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       })
-    })
-      .then((response) => response)
-      .then((result) => {
-        console.log(result);
+      .then((response) => {
+        console.log(response);
         window.alert('회원가입 되었습니다. 로그인해주세요.')
-        history.push('/')
+      }).catch((error) => {
+        console.log(error);
+        window.alert(error);
       })
+
+    // fetch(API, {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     username: id,
+    //     password: pwd,
+    //     passwordConfirm: pwd_check,
+    //   })
+    // })
+    //   .then((response) => response)
+    //   .then((result) => {
+    //     console.log(result);
+    //     window.alert('회원가입 되었습니다. 로그인해주세요.')
+    //     history.push('/')
+    //   })
   }
 }
 
@@ -49,29 +72,57 @@ const loginAPI = (id, pwd) => {
   return function (dispatch, getState, { history }) {
 
     const API = "http://seungwook.shop/api/login";
-    fetch(API, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
+
+    axios.post(API,
+      {
+        "username": id,
+        "password": pwd,
       },
-      body: JSON.stringify({
-        username: id,
-        password: pwd,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       })
-    })
-      .then(response => response.json())
-      .then(response => {
-        if (response.token) {
+      .then((response) => {
+        if (response.data.token) {
           // 로컬스토리지 저장
-          localStorage.setItem("is_token", response.token);
+          localStorage.setItem("is_token", response.data.token);
           localStorage.setItem("login_id", id);
           dispatch(setUser({
             username: id,
           }))
           window.alert('로그인되었습니다.');
-          history.push('/');
+          history.goBack();
         }
+      }).catch((error) => {
+        console.log(error);
+        window.alert(error);
       })
+
+
+    // fetch(API, {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     username: id,
+    //     password: pwd,
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     if (response.token) {
+    //       // 로컬스토리지 저장
+    //       localStorage.setItem("is_token", response.token);
+    //       localStorage.setItem("login_id", id);
+    //       dispatch(setUser({
+    //         username: id,
+    //       }))
+    //       window.alert('로그인되었습니다.');
+    //       history.push('/');
+    //     }
+    //   })
   }
 }
 

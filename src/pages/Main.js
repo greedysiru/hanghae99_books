@@ -6,6 +6,7 @@ import Navigator from '../components/Navigator';
 import Slide from '../components/Slide';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
+import SortSelect from '../components/SortSelect';
 
 // shared
 import Paging from '../shared/Paging';
@@ -24,13 +25,14 @@ const Main = (props) => {
   React.useEffect(() => {
     // 서버에서 현재 데이터 베이스의 책 정보 목록 가져오기
     dispatch(booksActions.bookListAPI());
-  })
+  }, [])
 
   return (
     <div>
       <Header history={props.history} />
       <Navigator />
       {/* <Slide /> */}
+
       <Cards history={props.history} />
       <Paging />
       <Footer />
