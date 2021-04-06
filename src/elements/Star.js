@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
 // 책의 별점을 출력하는 최소 단위 컴포넌트
 const Star = (props) => {
   const classes = useStyles();
-
-  // 사용자가 준 별점
-  const starRate = props.starRate;
   return (
     <div className={classes.root}>
       <Rating
@@ -32,7 +29,7 @@ const Star = (props) => {
           fontSize: "18px",
           color: "#FA722E"
         }}
-        defaultValue={starRate}
+        defaultValue={2.5}
         precision={0.5}
         readOnly />
     </div>

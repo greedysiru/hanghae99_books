@@ -12,7 +12,8 @@ import Description from '../components/Description';
 import ReviewWrite from '../components/ReviewWrite';
 import ReviewList from '../components/ReviewList';
 
-
+// 최소 단위 컴포넌트
+import { Star } from '../elements'
 
 
 // 리덕스 접근
@@ -39,17 +40,22 @@ const Detail = (props) => {
   return (
     <div className="detail">
       <Header></Header>
+      {/* {book_info? ():()} */}
       <BookInfo></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>
       <div className="detail__review">
+        <div className="star__score">
+          <span>구매자 별점</span>
+          <Star></Star>
+        </div>
         {/* 로그인시만 입력 가능하게 하기*/}
         {is_login ? (<ReviewWrite />) : null}
       </div>
       <hr className="detailLine"></hr>
-      {/* <ReviewList id={id} /> */}
+      <ReviewList id={id} />
       <Footer></Footer>
-    </div>
+    </div >
   )
 };
 
