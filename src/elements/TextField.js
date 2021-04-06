@@ -14,8 +14,13 @@ import { Button } from 'react-bootstrap';
 // SCSS
 import '../styles/text-field.scss'
 
+// 리덕스 접근
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as reviewActions } from "../redux/modules/review";
+
 // 텍스트를 입력하는 폼 컴포넌트
 const TextFiled = (props) => {
+  const dispatch = useDispatch();
 
   const [value, setValue] = React.useState('');
   const handleChange = (event) => {
@@ -23,7 +28,9 @@ const TextFiled = (props) => {
   };
 
   const submitReview = () => {
-    console.log(value)
+    dispatch(reviewActions.setText(value));
+    dispatch(reviewActions.writeReviewAPI(value));
+    setValue('');
   }
 
   return (
