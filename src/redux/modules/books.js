@@ -72,11 +72,11 @@ const updateStartEndPage = (start, end) => {
 }
 
 // 페이지에 맞춰 책 리스트 가져오기
-const bookListAPI = () => {
+const bookListAPI = (select) => {
   return function (dispatch, getState, { history }) {
     const current = getState().books.paging.current;
     // const API = `http://seungwook.shop/api/books?sort=createdAt&page=${current}&size=24`;
-    const API = `http://seungwook.shop/api/books?page=${current}&size=24`;
+    const API = `http://seungwook.shop/api/books?sort=${select}&page=${current}&size=24`;
 
     axios.get(API)
       .then((response) => {
