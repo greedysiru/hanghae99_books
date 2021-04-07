@@ -51,7 +51,7 @@ const Star = (props) => {
             fontSize: "18px",
             color: "#FA722E"
           }}
-          value={avgStarRate}
+          value={avgStarRate ? avgStarRate : 0}
           precision={0.5}
           readOnly />
 

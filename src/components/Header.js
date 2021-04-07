@@ -35,12 +35,12 @@ const Header = (props) => {
         <nav className="navbar navbar-expand-md navbar-light">
           <a className="navbar-brand"
             onClick={() => { history.push('/') }}
-          >RIDI Select</a>
+          ><span className="logo-bold">RIDI</span> <span className="logo">Select</span></a>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <a className="nav-link"
                 onClick={() => { history.push('/') }}
-              >RIDIBOOKS</a>
+              ><span className="logo-bold">RIDIBOOKS</span></a>
             </li>
           </ul>
           <ul className="navbar-nav">
