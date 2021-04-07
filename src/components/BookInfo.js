@@ -24,6 +24,8 @@ import Star from '../elements/Star';
 // 최소 단위 컴포넌트
 import { ElSpinner } from '../elements';
 
+
+
 // 책정보 컴포넌트
 const BookInfo = (props) => {
   const dispatch = useDispatch();
