@@ -23,11 +23,15 @@ const initialState = {
   }
 }
 
-// 하트 정보 조회
+// 좋아요 정보 조회
 const getHeartAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
     const API = `http://seungwook.shop/api/books/${book_id}/heart`;
     const token = localStorage.getItem('is_token');
+    // 로그아웃 상태이면 실행하지 않기
+    if (!token) {
+      return
+    }
     axios.get(API,
       {
         headers: {
@@ -47,6 +51,11 @@ const getHeartAPI = (book_id) => {
       });
   }
 }
+
+// 좋아요
+
+
+
 // Reducers
 export default handleActions(
   {

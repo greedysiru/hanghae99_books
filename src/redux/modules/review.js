@@ -81,6 +81,8 @@ const writeReviewAPI = (id) => {
         window.alert('리뷰가 작성되었습니다.');
         dispatch(setStarRating(0));
         dispatch(setText(""));
+        // 리뷰정보 다시 가져오기
+        dispatch(getReviewAPI(id));
       })
       .catch((error) => {
         dispatch(setStarRating(0));
@@ -155,6 +157,8 @@ const editReviewAPI = () => {
         window.alert('리뷰가 수정되었습니다.');
         dispatch(setStarRating(0));
         dispatch(setText(""));
+        // 리뷰정보 다시 가져오기
+        dispatch(getReviewAPI(id));
       })
       .catch((error) => {
         console.log(error);
@@ -182,6 +186,8 @@ const deleteReviewAPI = () => {
         window.alert('리뷰가 삭제되었습니다.');
         dispatch(setStarRating(0));
         dispatch(setText(""));
+        // 리뷰정보 다시 가져오기
+        dispatch(getReviewAPI(id));
       })
       .catch((error) => {
         console.log(error);

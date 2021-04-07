@@ -23,6 +23,9 @@ import { ElSpinner } from '../elements';
 
 // 책정보 컴포넌트
 const BookInfo = (props) => {
+  // 해당 책을 좋아요 했는지 가져오기
+  const is_heart = useSelector((state) => state.heart.heart.check)
+
   // 책 정보 가져오기
   const { id, imgUrl, title, bookElement } = useSelector(state => state.books.book_info);
   // 로딩끝나기전에는 스피너 표시
@@ -68,14 +71,14 @@ const BookInfo = (props) => {
               {/* 좋아요 버튼 */}
               <div className="bookInfo__contents__like">
                 <Button variant="contained">
-                  <FavoriteBorderIcon
+                  {is_heart ? (<FavoriteBorderIcon
                     color="primary"
-                  />
+                  />) :
+                    (<FavoriteIcon
+                      color="secondary"
+                    />)
+                  }
                 </Button>
-
-                <FavoriteIcon
-                  color="secondary"
-                />
               </div>
             </div>
           </div>
