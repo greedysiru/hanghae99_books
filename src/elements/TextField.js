@@ -34,11 +34,14 @@ const TextFiled = (props) => {
   // 수정 보내기
   const submitEdit = () => {
     dispatch(reviewActions.editReviewAPI())
+    setValue('')
+
   }
 
   // 삭제하기
   const submitDelete = () => {
     dispatch(reviewActions.deleteReviewAPI())
+    setValue('')
   }
 
   if (is_edit) {

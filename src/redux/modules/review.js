@@ -65,8 +65,10 @@ const writeReviewAPI = (id) => {
     const star = getState().review.star;
     const API = `http://seungwook.shop/api/books/${id}/comments`;
     const token = localStorage.getItem('is_token');
+    console.log(text, star)
     if (text === "" || star === 0) {
       window.alert('리뷰 내용을 작성해주세요.')
+      return
     }
     axios.post(API,
       {
@@ -138,7 +140,7 @@ const editReviewAPI = () => {
     const id = getState().books.book_info.id;
     const text = getState().review.text;
     const star = getState().review.star;
-    if (text === null && star === null) {
+    if (text === null || star === 0) {
       window.alert('수정할 내용을 입력하세요.')
       return
     }
