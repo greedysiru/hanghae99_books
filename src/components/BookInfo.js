@@ -13,7 +13,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from '@material-ui/core/Button';
 
 // 리덕스 접근
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+// 리덕스
+import { actionCreators as heartActions } from "../redux/modules/heart";
 
 // elements
 import Star from '../elements/Star';
@@ -23,8 +26,10 @@ import { ElSpinner } from '../elements';
 
 // 책정보 컴포넌트
 const BookInfo = (props) => {
+  const dispatch = useDispatch();
+
   // 해당 책을 좋아요 했는지 가져오기
-  const is_heart = useSelector((state) => state.heart.heart.check)
+  let is_heart = useSelector((state) => state.heart.heart.check)
 
   // 책 정보 가져오기
   const { id, imgUrl, title, bookElement } = useSelector(state => state.books.book_info);
@@ -33,7 +38,14 @@ const BookInfo = (props) => {
     return <ElSpinner />
   }
   const bookEtc = bookElement.split('·')
-  console.log(bookElement)
+  // 좋아요, 좋아요 취소 함수
+  const addHeart = () => {
+    dispatch(heartActions.addHeartAPI(id))
+  }
+
+  const deleteHeart = () => {
+    dispatch(heartActions.deleteHeartAPI(id))
+  }
 
   if (props.is_login) {
     return (
@@ -70,15 +82,27 @@ const BookInfo = (props) => {
               </div>
               {/* 좋아요 버튼 */}
               <div className="bookInfo__contents__like">
-                <Button variant="contained">
-                  {is_heart ? (<FavoriteBorderIcon
-                    color="primary"
-                  />) :
-                    (<FavoriteIcon
-                      color="secondary"
-                    />)
-                  }
-                </Button>
+                {!is_heart ? (
+                  <Button
+                    variant="contained"
+                    onClick={addHeart}
+                  >
+                    <FavoriteBorderIcon
+                      color="primary"
+                    />
+                  </Button>
+                ) :
+                  (
+                    <Button
+                      variant="contained"
+                      onClick={deleteHeart}
+                    >
+                      <FavoriteIcon
+                        color="secondary"
+                      />
+                    </Button>
+                  )
+                }
               </div>
             </div>
           </div>

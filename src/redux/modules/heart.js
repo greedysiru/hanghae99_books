@@ -53,7 +53,91 @@ const getHeartAPI = (book_id) => {
 }
 
 // 좋아요
+const addHeartAPI = (book_id) => {
+  return function (dispatch, getState, { history }) {
 
+    const API = `http://seungwook.shop/api/books/${book_id}/heart`;
+    const token = localStorage.getItem('is_token');
+    // 로그아웃 상태이면 실행하지 않기
+    if (!token) {
+      return
+    }
+
+    axios({
+      method: "POST",
+      url: API,
+      headers: {
+        'Authorization': `${token}`,
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => {
+      dispatch(getHeartAPI(book_id));
+      window.alert('좋아요 하셨습니다.');
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+      throw new Error(error);
+    });
+  }
+  // axios.post(API,
+  //   {
+  //     headers: {
+  //       'Authorization': `${token}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then((response) => {
+  //     dispatch(getHeartAPI(book_id));
+  //     window.alert('좋아요 하셨습니다.');
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+}
+
+//   axios.post(API,
+//     {
+//       headers: {
+//         'Authorization': `${token}`,
+//       }
+//     })
+//     .then((response) => {
+//       window.alert('좋아요 하셨습니다.');
+//       // 좋아요 정보 다시 가져오기
+//       dispatch(getHeartAPI(book_id));
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       window.alert(error);
+//     })
+// }
+
+
+// 좋아요 취소
+const deleteHeartAPI = (book_id) => {
+  return function (dispatch, getState, { history }) {
+
+    const API = `http://seungwook.shop/api/books/${book_id}/heart`;
+    const token = localStorage.getItem('is_token');
+    // 로그아웃 상태이면 실행하지 않기
+    if (!token) {
+      return
+    }
+    axios.delete(API,
+      {
+        headers: {
+          'Authorization': `${token}`,
+        }
+      })
+      .then((response) => {
+        dispatch(getHeartAPI(book_id));
+        window.alert('좋아요를 취소하셨습니다.');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}
 
 
 // Reducers
@@ -70,6 +154,8 @@ export default handleActions(
 // Action Creators export
 const actionCreators = {
   getHeartAPI,
+  addHeartAPI,
+  deleteHeartAPI,
 };
 
 export { actionCreators };
