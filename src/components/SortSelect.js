@@ -22,7 +22,6 @@ const SortSelect = () => {
 
   const sortSelection = (e) => {
     setSelect(e.target.value);
-    console.log(e.target.value)
     dispatch(booksActions.bookListAPI(e.target.value));
   }
 
