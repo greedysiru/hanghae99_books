@@ -5,11 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
+// elements
+import { Elspinner } from '../elements';
 
 
 // 리덕스
 import { actionCreators as reviewActions } from "../redux/modules/review";
 import { useSelector, useDispatch } from 'react-redux';
+import ElSpinner from './ElSpinner';
 
 // 별점 입력 최소 컴포넌트
 
@@ -32,6 +35,8 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 // 별점 점수 elements
 export default function StarRating(props) {
   const [value, setValue] = React.useState(0);
@@ -39,37 +44,72 @@ export default function StarRating(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  return (
-    <div className={classes.root}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'center',
-      }}
-    >
-      {value !== null &&
-        <Box
-          style={{
-            margin: "0",
-            width: "100%",
+  if (props.is_edit) {
+    return (
+      <div className={classes.root}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          textAlign: 'center',
+        }}
+      >
+        {value !== null &&
+          <Box
+            style={{
+              margin: "0",
+              width: "100%",
+            }}
+          >{labels[hover !== -1 ? hover : value]}
+          </Box>}
+        <Rating
+          style={{ fontSize: "50px" }}
+          name="hover-feedback"
+          value={props.userRate ? props.userRate : 0}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            dispatch(reviewActions.setStarRating(newValue));
           }}
-        >{labels[hover !== -1 ? hover : value]}
-        </Box>}
-      <Rating
-        style={{ fontSize: "50px" }}
-        name="hover-feedback"
-        value={value}
-        precision={1}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-          dispatch(reviewActions.setStarRating(newValue));
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
-      />
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
 
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className={classes.root}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          textAlign: 'center',
+        }}
+      >
+        {value !== null &&
+          <Box
+            style={{
+              margin: "0",
+              width: "100%",
+            }}
+          >{labels[hover !== -1 ? hover : value]}
+          </Box>}
+        <Rating
+          style={{ fontSize: "50px" }}
+          name="hover-feedback"
+          value={value}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            dispatch(reviewActions.setStarRating(newValue));
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+
+      </div>
+    );
+  }
 
 }
