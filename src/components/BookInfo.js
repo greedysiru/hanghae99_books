@@ -172,9 +172,14 @@ const BookInfo = (props) => {
                 <Star
                   avgStarRate={props.avgStarRate}
                 ></Star>
-                <span className="bookInfo__contents__star__text">
-                  {props.avgStarRate} 점
-                </span>
+
+                {props.avgStarRate === NaN ? (
+
+                  <span className="bookInfo__contents__star__text">
+                    {props.avgStarRate} 점
+                  </span>
+
+                ) : null}
                 <span className="bookInfo__contents__star__num">
                   ({props.starRateCount}명)
                 </span>
