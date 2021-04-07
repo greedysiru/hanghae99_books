@@ -42,7 +42,10 @@ const Detail = (props) => {
     <div className="detail">
       <Header></Header>
       {/* {book_info? ():()} */}
-      <BookInfo avgStarRate={avgStarRate}></BookInfo>
+      <BookInfo
+        avgStarRate={avgStarRate}
+        is_login={is_login}
+      ></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>
       {/* 로그인시만 입력 가능하게 하기*/}

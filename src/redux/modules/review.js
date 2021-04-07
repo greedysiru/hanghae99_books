@@ -127,6 +127,68 @@ const getReviewAPI = (id) => {
   }
 };
 
+// 리뷰 수정 API
+const editReviewAPI = () => {
+  return function (dispatch, getState, { history }) {
+    const comment_id = getState().review.user_comment.id;
+    const id = getState().books.book_info.id;
+    const text = getState().review.text;
+    const star = getState().review.star;
+    if (text === null && star === null) {
+      window.alert('수정할 내용을 입력하세요.')
+      return
+    }
+    const API = `http://seungwook.shop/api/books/${id}/comments/${comment_id}`;
+    const token = localStorage.getItem('is_token');
+    axios.put(API,
+      {
+        "comment": text,
+        "starRate": star,
+      },
+      {
+        headers: {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((response) => {
+        window.alert('리뷰가 수정되었습니다.');
+        dispatch(setStarRating(0));
+        dispatch(setText(""));
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(error);
+      })
+  }
+}
+
+// 리뷰 삭제 API
+const deleteReviewAPI = () => {
+  return function (dispatch, getState, { history }) {
+    const comment_id = getState().review.user_comment.id;
+    const id = getState().books.book_info.id;
+    const API = `http://seungwook.shop/api/books/${id}/comments/${comment_id}`;
+    const token = localStorage.getItem('is_token');
+    axios.delete(API,
+
+      {
+        headers: {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((response) => {
+        window.alert('리뷰가 삭제되었습니다.');
+        dispatch(setStarRating(0));
+        dispatch(setText(""));
+      })
+      .catch((error) => {
+        console.log(error);
+        window.alert(error);
+      })
+  }
+}
 
 // Reducers
 export default handleActions(
@@ -154,6 +216,8 @@ const actionCreators = {
   setText,
   writeReviewAPI,
   getReviewAPI,
+  editReviewAPI,
+  deleteReviewAPI,
 };
 
 export { actionCreators };

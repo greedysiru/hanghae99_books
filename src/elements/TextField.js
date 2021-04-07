@@ -20,7 +20,6 @@ const TextFiled = (props) => {
 
   const { userText, is_edit } = props
 
-  console.log(userText)
   const [value, setValue] = React.useState('');
   const handleChange = (e) => {
     setValue(e.target.value)
@@ -28,9 +27,18 @@ const TextFiled = (props) => {
 
   };
 
-
+  // 작성 보내기
   const submitReview = () => {
     dispatch(reviewActions.writeReviewAPI(id))
+  }
+  // 수정 보내기
+  const submitEdit = () => {
+    dispatch(reviewActions.editReviewAPI())
+  }
+
+  // 삭제하기
+  const submitDelete = () => {
+    dispatch(reviewActions.deleteReviewAPI())
   }
 
   if (is_edit) {
@@ -40,7 +48,7 @@ const TextFiled = (props) => {
           id="outlined-textarea"
           placeholder="리뷰 작성 시 광고 및 욕설 ,비속어나 타인을 비방하는 문구를 사용하시면 비공개될 수 있습니다."
           multiline
-          value={userText}
+          defaultValue={userText}
           onChange={handleChange}
           variant="outlined"
           size="medium"
@@ -56,8 +64,18 @@ const TextFiled = (props) => {
             width: "95px",
             fontSize: "12px",
           }}
-          onClick={submitReview}
+          onClick={submitEdit}
         >수정하기</Button>
+        <Button
+          variant="danger"
+          style={{
+            height: "30px",
+            width: "95px",
+            fontSize: "12px",
+            margin: '0px 0px 0px 5px'
+          }}
+          onClick={submitDelete}
+        > 삭제하기</Button>
       </div>
     )
   } else {

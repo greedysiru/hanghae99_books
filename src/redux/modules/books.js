@@ -8,6 +8,8 @@ import axios from 'axios';
 
 // 리뷰 액션
 import { actionCreators as reviewActions } from "./review";
+// 좋아요 액션
+import { actionCreators as heartActions } from './heart';
 
 
 // Actions
@@ -84,7 +86,6 @@ const bookListAPI = (select) => {
     console.log(API)
     axios.get(API)
       .then((response) => {
-        console.log(response.data)
         return response.data
       })
       .then((_book_list) => {
@@ -120,6 +121,11 @@ const bookInfoAPI = (book_id) => {
         dispatch(getBookInfo(_book_info));
       })
       .then(
+        // 좋아요 정보
+        dispatch(heartActions.getHeartAPI(book_id))
+      )
+      .then(
+        // 리뷰정보
         dispatch(reviewActions.getReviewAPI(book_id))
       )
       .catch((error) => {

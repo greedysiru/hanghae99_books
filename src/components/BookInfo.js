@@ -31,55 +31,96 @@ const BookInfo = (props) => {
   }
   const bookEtc = bookElement.split('·')
   console.log(bookElement)
-  return (
-    <div
-      // 블러 배경
-      className="bookInfo"
-      style={{ backgroundImage: `url(${imgUrl})` }}
-    >
-      <div className="blur">
-        <div className="bookInfo__contents">
-          <div
-            className="bookInfo__contents__img"
-            // 책 이미지
-            style={{ backgroundImage: `url(${imgUrl})` }}
-          >
-          </div>
-          <div className="bookInfo__contents__col">
-            <div className="bookInfo__contents__titile">
-              {/* 책 제목 */}
-              {title}
-            </div>
-            <div className="bookInfo__contents__info">
-              {/* 저자 및 출판사 정보 등 */}
-              <span className="bold">{bookEtc[0]} </span>
-              ·<span className="bold"> {bookEtc[1].split('E')[0]}</span>
-              <span > EPUB{bookEtc[2]}</span>
-              <span>{bookEtc[3]}</span>
-            </div>
-            <div className="bookInfo__contnets__star">
-              {/* 별점 표시 */}
-              <Star
-                avgStarRate={props.avgStarRate}
-              ></Star>
-            </div>
-            <div className="bookInfo__contents__like">
-              {/* 좋아요 버튼 */}
-              <Button variant="contained">
-                <FavoriteBorderIcon
-                  color="primary"
-                />
-              </Button>
 
-              <FavoriteIcon
-                color="secondary"
-              />
+  if (props.is_login) {
+    return (
+      <div
+        // 블러 배경
+        className="bookInfo"
+        style={{ backgroundImage: `url(${imgUrl})` }}
+      >
+        <div className="blur">
+          <div className="bookInfo__contents">
+            <div
+              className="bookInfo__contents__img"
+              // 책 이미지
+              style={{ backgroundImage: `url(${imgUrl})` }}
+            >
+            </div>
+            <div className="bookInfo__contents__col">
+              <div className="bookInfo__contents__titile">
+                {/* 책 제목 */}
+                {title}
+              </div>
+              <div className="bookInfo__contents__info">
+                {/* 저자 및 출판사 정보 등 */}
+                <span className="bold">{bookEtc[0]} </span>
+              ·<span className="bold"> {bookEtc[1].split('E')[0]}</span>
+                <span > EPUB{bookEtc[2]}</span>
+                <span>{bookEtc[3]}</span>
+              </div>
+              <div className="bookInfo__contnets__star">
+                {/* 별점 표시 */}
+                <Star
+                  avgStarRate={props.avgStarRate}
+                ></Star>
+              </div>
+              {/* 좋아요 버튼 */}
+              <div className="bookInfo__contents__like">
+                <Button variant="contained">
+                  <FavoriteBorderIcon
+                    color="primary"
+                  />
+                </Button>
+
+                <FavoriteIcon
+                  color="secondary"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div >
-  )
+      </div >
+    )
+  } else {
+    return (
+      <div
+        // 블러 배경
+        className="bookInfo"
+        style={{ backgroundImage: `url(${imgUrl})` }}
+      >
+        <div className="blur">
+          <div className="bookInfo__contents">
+            <div
+              className="bookInfo__contents__img"
+              // 책 이미지
+              style={{ backgroundImage: `url(${imgUrl})` }}
+            >
+            </div>
+            <div className="bookInfo__contents__col">
+              <div className="bookInfo__contents__titile">
+                {/* 책 제목 */}
+                {title}
+              </div>
+              <div className="bookInfo__contents__info">
+                {/* 저자 및 출판사 정보 등 */}
+                <span className="bold">{bookEtc[0]} </span>
+              ·<span className="bold"> {bookEtc[1].split('E')[0]}</span>
+                <span > EPUB{bookEtc[2]}</span>
+                <span>{bookEtc[3]}</span>
+              </div>
+              <div className="bookInfo__contnets__star">
+                {/* 별점 표시 */}
+                <Star
+                  avgStarRate={props.avgStarRate}
+                ></Star>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div >
+    )
+  }
 };
 
 export default BookInfo;
