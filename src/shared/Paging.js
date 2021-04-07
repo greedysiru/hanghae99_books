@@ -26,8 +26,6 @@ const Paging = (props) => {
   // 총 페이지 수 가져오기
   const totalPages = useSelector((state) => state.books.book_list.totalPages);
 
-
-
   // 현재 페이지 책 목록 가져오기
   React.useEffect(() => {
     // 총 페이지가 10 이하이면 end에 적용하기
@@ -67,6 +65,10 @@ const Paging = (props) => {
   let items = [];
   // 페이징 넘버 생성
   for (let number = start; number <= end; number++) {
+    // 총페이지를 넘으면 생성 중단
+    if (number > totalPages) {
+      break
+    }
     items.push(
       <Pagination.Item
         key={number}
@@ -85,7 +87,9 @@ const Paging = (props) => {
         <Pagination.First
           // 처음 페이지로 가기
           onClick={() => {
-            pageMove(1)
+            pageMove(1);
+            // 시작, 끝 페이지도 이동
+            dispatch(booksActions.updateStartEndPage(1, 10));
           }}
         />
         {/* end가 10 이하이면 나타내지 않기 */}
@@ -108,9 +112,10 @@ const Paging = (props) => {
           />
         )}
         <Pagination.Last
-          // 처음 페이지로 가기
+          // 마지막 페이지로 가기
           onClick={() => {
             pageMove(totalPages)
+            dispatch(booksActions.updateStartEndPage(parseInt(totalPages / 10) + 1, totalPages));
           }}
         />
       </Pagination>
