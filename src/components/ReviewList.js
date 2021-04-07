@@ -47,8 +47,8 @@ const ReviewList = (props) => {
       <div>
         {comment_list.map((p, idx) => {
           return (
-            <div>
-              <div className="reviewlist">
+            <div key={p.id}>
+              <div className="reviewlist" >
                 <div className="reviewlist__header">
                   <Star is_comment={true} starRate={p.starRate} />
                   <span

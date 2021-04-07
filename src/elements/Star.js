@@ -3,10 +3,9 @@ import React from 'react';
 // material ui
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
 
-// 최소 단위 컴포넌트
-import { ElSpinner } from '../elements';
+// 리덕스 접근
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,26 +21,44 @@ const useStyles = makeStyles((theme) => ({
 const Star = (props) => {
   // 사용자 별점
   const starRate = props.starRate;
-
+  // 별점 가져오기
+  const avgStarRate = useSelector(state => state.review.review_info.avgStarRate);
   // 코멘트인지 판별
   const is_comment = props.is_comment;
-  console.log(is_comment)
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <Rating
-        name="half-rating-read"
-        style={{
-          fontSize: "18px",
-          color: "#FA722E"
-        }}
-        defaultValue={is_comment ? starRate : props.avgStarRate}
-        precision={0.5}
-        readOnly />
+  if (is_comment) {
+    return (
+      <div className={classes.root}>
+        <Rating
+          name="half-rating-read"
+          style={{
+            fontSize: "18px",
+            color: "#FA722E"
+          }}
+          value={starRate}
+          precision={0.5}
+          readOnly />
 
-    </div>
-  );
+      </div>
+    )
+  } else {
+    return (
+      <div className={classes.root}>
+        <Rating
+          name="half-rating-read"
+          style={{
+            fontSize: "18px",
+            color: "#FA722E"
+          }}
+          value={avgStarRate}
+          precision={0.5}
+          readOnly />
+
+      </div>
+    )
+  }
+
 }
 
 

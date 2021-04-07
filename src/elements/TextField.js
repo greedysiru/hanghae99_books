@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const TextFiled = (props) => {
   const dispatch = useDispatch()
   const id = useSelector((state) => state.books.book_info.id)
+
   const [value, setValue] = React.useState('');
   const handleChange = (e) => {
     setValue(e.target.value)

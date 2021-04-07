@@ -44,15 +44,16 @@ const Detail = (props) => {
       <BookInfo avgStarRate={avgStarRate}></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>
-      <div className="detail__review">
-        <div className="star__score">
-          <span>구매자 별점</span>
-          <Star avgStarRate={avgStarRate}></Star>
+      {/* 로그인시만 입력 가능하게 하기*/}
+      {is_login ? (
+        <div>
+          <div className="detail__review">
+            <ReviewWrite />
+          </div>
+          <hr className="detailLine"></hr>
         </div>
-        {/* 로그인시만 입력 가능하게 하기*/}
-        {is_login ? (<ReviewWrite />) : null}
-      </div>
-      <hr className="detailLine"></hr>
+      ) : null}
+
       <ReviewList id={id} />
       <Footer></Footer>
     </div >

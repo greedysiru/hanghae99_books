@@ -81,9 +81,10 @@ const bookListAPI = (select) => {
     const current = getState().books.paging.current;
     // const API = `http://seungwook.shop/api/books?sort=createdAt&page=${current}&size=24`;
     const API = `http://seungwook.shop/api/books?sort=${select}&page=${current}&size=24`;
-
+    console.log(API)
     axios.get(API)
       .then((response) => {
+        console.log(response.data)
         return response.data
       })
       .then((_book_list) => {

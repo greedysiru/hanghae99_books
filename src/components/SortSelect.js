@@ -22,10 +22,9 @@ const SortSelect = () => {
 
   const sortSelection = (e) => {
     setSelect(e.target.value);
-    dispatch(booksActions.bookListAPI(select));
+    console.log(e.target.value)
+    dispatch(booksActions.bookListAPI(e.target.value));
   }
-
-  console.log(select)
 
   return (
     <div className="sortselect">

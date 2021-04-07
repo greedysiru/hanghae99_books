@@ -24,7 +24,7 @@ const Main = (props) => {
   return (
     <div>
       <Header history={props.history} />
-      <Navigator />
+      {/* <Navigator /> */}
       {/* <Slide /> */}
       <SortSelect />
       <Cards history={props.history} />
