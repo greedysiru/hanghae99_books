@@ -8,6 +8,9 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 
+// 페이지 이동을 위한 history
+import { history } from '../redux/configStore';
+
 const Signup = (props) => {
   const dispatch = useDispatch();
   // state 관리를 위한 hook
@@ -56,7 +59,7 @@ const Signup = (props) => {
               <input
                 className="input_group"
                 placeholder="비밀번호"
-                type="text"
+                type="password"
                 // 비밀번호 입력
                 onChange={(e) => {
                   setPwd(e.target.value);
@@ -84,7 +87,10 @@ const Signup = (props) => {
               type="text"
             ></input> */}
             <div className="button_group">
-              <button className="signin_button">뒤로가기</button>
+              <button
+                className="signin_button"
+                onClick={history.goBack}
+              >뒤로가기</button>
               <button
                 className="login_button"
                 // 회원 가입

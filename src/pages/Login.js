@@ -44,17 +44,19 @@ const Login = (props) => {
               <input
                 className="login_input"
                 placeholder="비밀번호"
-                type="text"
+                type="password"
                 // 비밀번호 입력
                 onChange={(e) => {
                   setPwd(e.target.value);
                 }}
+                // 엔터키 로그인
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    login();
+                  }
+                }}
               ></input>
-              <div className="text_box">
-                <div className="t_box"><input type="checkbox" />
-                  <p className="text">로그인 상태 유지</p></div>
-                <p className="text">아이디 찾기| 비밀번호 재설정</p>
-              </div>
+
             </div>
 
 
