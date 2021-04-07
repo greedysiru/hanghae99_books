@@ -50,7 +50,7 @@
          }
       }
 
-      .bookInfo__contnets__star{
+      .bookInfo__contents__star{
         display: flex;
         align-items: center;
         .bookInfo__contents__star__text{
@@ -61,11 +61,18 @@
         .bookInfo__contents__star__num{
           color:black;
           font-size: 13px;
-          font-weight: 800;
+          font-weight: 500;
+          margin-left: 3px;
         }
       }
 
       
   }
 }
+}
+.bookInfo__contents__heart__text{
+  padding-top: 5px;
+  color:#F50057;
+  font-size: 13px;
+  font-weight: 500;
 }

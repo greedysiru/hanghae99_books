@@ -9,8 +9,6 @@ import axios from 'axios';
 
 // Actions
 const GET_HEART = "GET_HEART";
-const ADD_HEART = 'ADD_HEART';
-const DELETE_HEART = 'DELETE_HEART';
 
 // Action Creators
 const getHeart = createAction(GET_HEART, (heart) => ({ heart }));
@@ -28,10 +26,7 @@ const getHeartAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
     const API = `http://seungwook.shop/api/books/${book_id}/heart`;
     const token = localStorage.getItem('is_token');
-    // 로그아웃 상태이면 실행하지 않기
-    if (!token) {
-      return
-    }
+
     axios.get(API,
       {
         headers: {

@@ -36,7 +36,8 @@ const Detail = (props) => {
   // 로그인 여부 가져오기
   const is_login = useSelector(state => state.user.is_login);
   // 별점 가져오기
-  const avgStarRate = useSelector(state => state.review.review_info.avgStarRate);
+  const { avgStarRate, starRateCount } = useSelector(state => state.review.review_info);
+
 
   return (
     <div className="detail">
@@ -45,6 +46,7 @@ const Detail = (props) => {
       <BookInfo
         avgStarRate={avgStarRate}
         is_login={is_login}
+        starRateCount={starRateCount}
       ></BookInfo>
       <Description></Description>
       <hr className="detailLine"></hr>

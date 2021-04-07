@@ -137,6 +137,8 @@ const logoutStorage = () => {
     window.alert('로그아웃 되었습니다.');
     // 로그아웃 후 메인페이지로
     history.replace('/');
+    // 리덕스 초기화를 위한 새로고침
+    window.location.reload();
   }
 }
 

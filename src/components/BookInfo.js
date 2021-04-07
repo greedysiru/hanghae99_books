@@ -31,7 +31,7 @@ const BookInfo = (props) => {
   const dispatch = useDispatch();
 
   // 해당 책을 좋아요 했는지 가져오기
-  let is_heart = useSelector((state) => state.heart.heart.check)
+  let { check, heartCount } = useSelector((state) => state.heart.heart);
 
   // 책 정보 가져오기
   const { id, imgUrl, title, bookElement } = useSelector(state => state.books.book_info);
@@ -76,15 +76,39 @@ const BookInfo = (props) => {
                 <span > EPUB{bookEtc[2]}</span>
                 <span>{bookEtc[3]}</span>
               </div>
-              <div className="bookInfo__contnets__star">
+              <div className="bookInfo__contents__star">
                 {/* 별점 표시 */}
                 <Star
                   avgStarRate={props.avgStarRate}
                 ></Star>
+                <span className="bookInfo__contents__star__text">
+                  {props.avgStarRate} 점
+                </span>
+                <span className="bookInfo__contents__star__num">
+                  ({props.starRateCount}명)
+                </span>
+                <span className="bookInfo__contents__heart">
+                </span>
+
+              </div>
+              {/* 좋아요 표시 */}
+              <div className="bookInfo__contents__heart">
+
+                <FavoriteIcon
+                  color="secondary"
+                  style={{
+                    fontSize: '15px',
+                    margin: '0px 3px 0px 0px',
+                    padding: '0px  0px 1px 0px'
+                  }}
+                />
+                <span className="bookInfo__contents__heart__text">
+                  {heartCount} 명
+                </span>
               </div>
               {/* 좋아요 버튼 */}
               <div className="bookInfo__contents__like">
-                {!is_heart ? (
+                {!check ? (
                   <Button
                     variant="contained"
                     onClick={addHeart}
@@ -105,6 +129,7 @@ const BookInfo = (props) => {
                     </Button>
                   )
                 }
+
               </div>
             </div>
           </div>
@@ -138,12 +163,22 @@ const BookInfo = (props) => {
                 <span > EPUB{bookEtc[2]}</span>
                 <span>{bookEtc[3]}</span>
               </div>
-              <div className="bookInfo__contnets__star">
+              <div className="bookInfo__contents__star">
                 {/* 별점 표시 */}
                 <Star
                   avgStarRate={props.avgStarRate}
                 ></Star>
+                <span className="bookInfo__contents__star__text">
+                  {props.avgStarRate} 점
+                </span>
+                <span className="bookInfo__contents__star__num">
+                  ({props.starRateCount}명)
+                </span>
+                <span className="bookInfo__contents__heart">
+                </span>
+
               </div>
+
             </div>
           </div>
         </div>
