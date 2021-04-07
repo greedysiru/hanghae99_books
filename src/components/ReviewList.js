@@ -31,7 +31,6 @@ const ReviewList = (props) => {
   //   }
   // }, []);
 
-  console.log(comment_list)
   if (!comment_list) {
     return <ElSpinner />
   }

@@ -16,23 +16,36 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // 리뷰 작성 컴포넌트
 const ReviewWrite = (props) => {
-  // 사용자의 코멘트 아이디 조회
-  const comment_id = useSelector((state) => state.review.comment_id);
-  // 코멘트 리스트
-  const comment_list = useSelector((state) => state.review.comment);
-  // 사용자의 리뷰가 있으면 해당 내용 찾기
-  if (comment_id) {
-    console.log(comment_list)
+  // 유저 코멘트 가져오기
+  const user_comment = useSelector((state) => state.review.user_comment);
+  console.log(user_comment)
+
+  // 수정, 삭제가능 여부
+  let is_edit = false;
+  let userText = '';
+  let userRate = 0;
+  if (user_comment) {
+    is_edit = true;
+    // 사용자가 작성했던 내용 가져오기
+    userText = user_comment.comment;
+    userRate = user_comment.starRate;
   }
 
   return (
     <div className="reviewwrite">
       <div className="star__rating">
         {/* 별점 입력 */}
-        <StarRating></StarRating>
+        <StarRating
+          // props로 보내기
+          userRate={userRate}
+          is_edit={is_edit}
+        ></StarRating>
         {/* 텍스트 입력 */}
       </div>
-      <TextField></TextField>
+      <TextField
+        userText={userText}
+        is_edit={is_edit}
+      ></TextField>
 
     </div>
   )

@@ -33,42 +33,80 @@ const useStyles = makeStyles({
 });
 
 // 별점 점수 elements
-export default function StarRating() {
+export default function StarRating(props) {
+  const { userRate, is_edit } = props
+
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  return (
-    <div className={classes.root}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'center',
-      }}
-    >
-      {value !== null &&
-        <Box
-          style={{
-            margin: "0",
-            width: "100%",
-          }}
-        >{labels[hover !== -1 ? hover : value]}
-        </Box>}
-      <Rating
-        style={{ fontSize: "50px" }}
-        name="hover-feedback"
-        value={value}
-        precision={1}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-          dispatch(reviewActions.setStarRating(newValue));
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
-      />
 
-    </div>
-  );
+  if (is_edit) {
+    return (
+      <div className={classes.root}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          textAlign: 'center',
+        }}
+      >
+        {value !== null &&
+          <Box
+            style={{
+              margin: "0",
+              width: "100%",
+            }}
+          >{labels[hover !== -1 ? hover : value]}
+          </Box>}
+        <Rating
+          style={{ fontSize: "50px" }}
+          name="hover-feedback"
+          value={userRate}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            dispatch(reviewActions.setStarRating(newValue));
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+
+      </div>
+    )
+  } else {
+    return (
+      <div className={classes.root}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          textAlign: 'center',
+        }}
+      >
+        {value !== null &&
+          <Box
+            style={{
+              margin: "0",
+              width: "100%",
+            }}
+          >{labels[hover !== -1 ? hover : value]}
+          </Box>}
+        <Rating
+          style={{ fontSize: "50px" }}
+          name="hover-feedback"
+          value={value}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            dispatch(reviewActions.setStarRating(newValue));
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+
+      </div>
+    );
+  }
 }

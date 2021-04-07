@@ -23,7 +23,7 @@ const EDIT_REVIEW = "EDIT_REVIEW";
 // Action Creators
 const setStar = createAction(SET_STAR, (review) => ({ review }));
 const writeText = createAction(WRITE_TEXT, (review) => ({ review }));
-const getReview = createAction(GET_REVIEW, (comment_id, comment_idx, review) => ({ comment_id, comment_idx, review }));
+const getReview = createAction(GET_REVIEW, (user_comment, review) => ({ user_comment, review }));
 const editReivew = createAction(EDIT_REVIEW, (comment_id, review) => ({ comment_id, review }));
 
 
@@ -32,8 +32,7 @@ const initialState = {
   text: null,
   star: null,
   // 사용자가 리뷰를 남긴 경우의 코멘트 아이디
-  comment_id: null,
-  comment_idx: null,
+  user_comment: null,
   review_info: {
 
   }
@@ -111,17 +110,15 @@ const getReviewAPI = (id) => {
         // 사용자의 리뷰 찾기
         const username = localStorage.getItem('login_id');
         const comment_list = _review.comment;
-        let comment_id = null;
-        let comment_idx = null;
+        let user_comment = null;
+
         // 코멘트 아이디 찾기
         for (let i = 0; i < comment_list.length; i++) {
           if (comment_list[i].account.username === username) {
-            comment_id = comment_list[i].id;
-            comment_idx = i
+            user_comment = comment_list[i]
           }
         }
-        // 사용자의 코멘트 아이디와 리뷰 정보 입력
-        dispatch(getReview(comment_id, comment_idx, _review));
+        dispatch(getReview(user_comment, _review));
       }).catch((error) => {
         window.alert('리뷰 정보를 불러올 수 없습니다. 다시 시도해주세요.');
         console.log(error);
@@ -143,8 +140,7 @@ export default handleActions(
       }),
     [GET_REVIEW]: (state, action) => produce(state, (draft) => {
       draft.review_info = action.payload.review
-      draft.comment_id = action.payload.comment_id
-      draft.comment_idx = action.payload.comment_idx
+      draft.user_comment = action.payload.user_comment
     })
   },
   initialState

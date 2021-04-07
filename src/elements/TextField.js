@@ -18,6 +18,9 @@ const TextFiled = (props) => {
   const dispatch = useDispatch()
   const id = useSelector((state) => state.books.book_info.id)
 
+  const { userText, is_edit } = props
+
+  console.log(userText)
   const [value, setValue] = React.useState('');
   const handleChange = (e) => {
     setValue(e.target.value)
@@ -25,36 +28,66 @@ const TextFiled = (props) => {
 
   };
 
+
   const submitReview = () => {
     dispatch(reviewActions.writeReviewAPI(id))
   }
 
-  return (
-    <div className="textfield">
-      <TextField
-        id="outlined-textarea"
-        placeholder="리뷰 작성 시 광고 및 욕설 ,비속어나 타인을 비방하는 문구를 사용하시면 비공개될 수 있습니다."
-        multiline
-        value={value}
-        onChange={handleChange}
-        variant="outlined"
-        size="medium"
-        style={{
-          width: '100%',
-          marginBottom: '5px',
-        }}
-      />
-      <Button
-        variant="primary"
-        style={{
-          height: "30px",
-          width: "95px",
-          fontSize: "12px",
-        }}
-        onClick={submitReview}
-      >리뷰 남기기</Button>
-    </div>
-  )
+  if (is_edit) {
+    return (
+      <div className="textfield">
+        <TextField
+          id="outlined-textarea"
+          placeholder="리뷰 작성 시 광고 및 욕설 ,비속어나 타인을 비방하는 문구를 사용하시면 비공개될 수 있습니다."
+          multiline
+          value={userText}
+          onChange={handleChange}
+          variant="outlined"
+          size="medium"
+          style={{
+            width: '100%',
+            marginBottom: '5px',
+          }}
+        />
+        <Button
+          variant="primary"
+          style={{
+            height: "30px",
+            width: "95px",
+            fontSize: "12px",
+          }}
+          onClick={submitReview}
+        >수정하기</Button>
+      </div>
+    )
+  } else {
+    return (
+      <div className="textfield">
+        <TextField
+          id="outlined-textarea"
+          placeholder="리뷰 작성 시 광고 및 욕설 ,비속어나 타인을 비방하는 문구를 사용하시면 비공개될 수 있습니다."
+          multiline
+          value={value}
+          onChange={handleChange}
+          variant="outlined"
+          size="medium"
+          style={{
+            width: '100%',
+            marginBottom: '5px',
+          }}
+        />
+        <Button
+          variant="primary"
+          style={{
+            height: "30px",
+            width: "95px",
+            fontSize: "12px",
+          }}
+          onClick={submitReview}
+        >리뷰 남기기</Button>
+      </div>
+    )
+  }
 };
 
 export default TextFiled;
