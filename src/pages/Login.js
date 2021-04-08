@@ -26,9 +26,13 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <body className="login_body">
-        <div className="header_box">
-          <h1 className="ridi_logo">RIDIBOOKS</h1>
-        </div>
+        <a
+          onClick={() => { history.push('/') }}
+        >
+          <div className="header_box">
+            <h1 className="ridi_logo">RIDIBOOKS</h1>
+          </div>
+        </a>
         <div className="container">
           <div className="form_box">
             <div className="inner_form">
