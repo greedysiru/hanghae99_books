@@ -60,13 +60,12 @@ const Signup = (props) => {
   return (
     <React.Fragment>
       <body className="login_body">
-        <a
-          onClick={() => { history.push('/') }}
-        >
-          <div className="header_box">
-            <h1 className="ridi_logo">RIDIBOOKS</h1>
-          </div>
-        </a>
+
+        <div className="header_box">
+          <h1 className="ridi_logo"
+            onClick={() => { history.push('/') }}
+          >RIDIBOOKS</h1>
+        </div>
         <div className="container">
           <div className="form_box">
 
