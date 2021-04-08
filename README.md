@@ -61,6 +61,28 @@
 
 
 
+## 사용 패키지
+
+* material-ui
+  * 각종 아이콘
+* bootstrap
+  * 부트스트랩과 react를 연동
+  * 메인 페이지의 서적 목록 뷰(card)
+* axios
+  * 서버 통신을 위한 패키지
+* connected-react-router, history
+  * 라우팅을 위한 패키지
+* react-redux, redux
+  * 프론트엔드에서 데이터의 전역관리를 위한 패키지
+* redux-logger
+  * 리덕스의 state를 콘솔에서 조회할 수 있게하는 패키지
+* redux-thunk
+  * 비동기 작업을 처리하기 위한 미들웨어
+* sass-loader
+  * react와 scss를 연동하는 패키지
+
+
+
 ## 개발 타임라인
 
 **프로젝트를 진행하며 기록한 [TIL](https://github.com/greedysiru/TIL/tree/main/hanghae99) 및 [일지](https://greedysiru.tistory.com/category/이모저모/항해99%20일지) 기반의 타임라인**
