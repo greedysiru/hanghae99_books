@@ -21,7 +21,6 @@ const Header = (props) => {
 
   // 로그아웃
   const logOut = () => {
-    console.log('로그아웃')
     dispatch(userActions.logoutStorage());
   }
 

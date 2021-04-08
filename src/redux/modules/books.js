@@ -87,7 +87,6 @@ const bookListAPI = (select) => {
     }
 
     const API = `http://seungwook.shop/api/books?sort=${select}&page=${current}&size=24`;
-    console.log(API)
     axios.get(API)
       .then((response) => {
         return response.data
@@ -96,7 +95,6 @@ const bookListAPI = (select) => {
         // 리덕스에 담기
         dispatch(setBooks(_book_list));
       }).catch((error) => {
-        console.log(error);
       });
 
     // fetch(API, {
@@ -134,7 +132,6 @@ const bookInfoAPI = (book_id) => {
       )
       .catch((error) => {
         window.alert('책 정보를 불러오지 못했습니다. 재시도해주세요.')
-        console.log(error);
       });
   }
 }

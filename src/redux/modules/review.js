@@ -65,7 +65,6 @@ const writeReviewAPI = (id) => {
     const star = getState().review.star;
     const API = `http://seungwook.shop/api/books/${id}/comments`;
     const token = localStorage.getItem('is_token');
-    console.log(text, star)
     if (text === "" || star === 0) {
       window.alert('리뷰 내용을 작성해주세요.')
       return
@@ -92,7 +91,9 @@ const writeReviewAPI = (id) => {
         dispatch(setStarRating(0));
         dispatch(setText(""));
         console.log(error);
-        window.alert(error);
+        localStorage.removeItem("is_token");
+        localStorage.removeItem("login_id")
+        window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
       })
   }
 }
@@ -112,7 +113,6 @@ const getReviewAPI = (id) => {
           dispatch(getReview(null));
           return
         }
-        console.log(_review)
         // 사용자의 리뷰 찾기
         const username = localStorage.getItem('login_id');
         const comment_list = _review.comment;
@@ -166,7 +166,9 @@ const editReviewAPI = () => {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(error);
+        localStorage.removeItem("is_token");
+        localStorage.removeItem("login_id")
+        window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
       })
   }
 }
@@ -195,7 +197,9 @@ const deleteReviewAPI = () => {
       })
       .catch((error) => {
         console.log(error);
-        window.alert(error);
+        localStorage.removeItem("is_token");
+        localStorage.removeItem("login_id")
+        window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
       })
   }
 }

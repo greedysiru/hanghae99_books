@@ -21,7 +21,6 @@ const Paging = (props) => {
 
   // 리덕스의 페이징 정보 가져오기
   const { start, end, current } = useSelector((state) => state.books.paging);
-  console.log(start, end, current)
 
   // 총 페이지 수 가져오기
   const totalPages = useSelector((state) => state.books.book_list.totalPages);

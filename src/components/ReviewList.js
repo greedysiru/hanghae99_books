@@ -23,13 +23,7 @@ const ReviewList = (props) => {
   // 코멘트 정보 가져오기
   const comment_list = useSelector((state) => state.review.review_info.comment);
 
-  // React.useEffect(() => {
-  //   // 리뷰정보 가져오기
-  //   if (!comment_list) {
-  //     console.log(comment_list)
-  //     dispatch(reviewActions.getReviewAPI(id));
-  //   }
-  // }, []);
+
 
   if (!comment_list) {
     return <ElSpinner />

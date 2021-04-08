@@ -18,7 +18,6 @@ import { useSelector, useDispatch } from 'react-redux';
 const ReviewWrite = (props) => {
   // 유저 코멘트 가져오기
   const user_comment = useSelector((state) => state.review.user_comment);
-  console.log(user_comment)
 
   // 수정, 삭제가능 여부
   let is_edit = false;

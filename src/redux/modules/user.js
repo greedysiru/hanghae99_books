@@ -47,23 +47,7 @@ const signupAPI = (id, pwd, pwd_check) => {
         window.alert(error);
       })
 
-    // fetch(API, {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: id,
-    //     password: pwd,
-    //     passwordConfirm: pwd_check,
-    //   })
-    // })
-    //   .then((response) => response)
-    //   .then((result) => {
-    //     console.log(result);
-    //     window.alert('회원가입 되었습니다. 로그인해주세요.')
-    //     history.push('/')
-    //   })
+
   }
 }
 
@@ -92,7 +76,7 @@ const loginAPI = (id, pwd) => {
             username: id,
           }))
           window.alert('로그인되었습니다.');
-          history.goBack();
+          history.push('/');
         }
       }).catch((error) => {
         console.log(error);

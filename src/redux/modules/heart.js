@@ -34,12 +34,10 @@ const getHeartAPI = (book_id) => {
         }
       })
       .then((response) => {
-        console.log(response)
         return response.data
       })
       .then((_heart_info) => {
         // 리덕스에 담기
-        console.log(_heart_info)
         dispatch(getHeart(_heart_info));
       }).catch((error) => {
         console.log(error);
@@ -68,44 +66,14 @@ const addHeartAPI = (book_id) => {
     }).then((res) => {
       dispatch(getHeartAPI(book_id));
       window.alert('좋아요 하셨습니다.');
-      console.log(res);
     }).catch(error => {
       console.log(error);
       throw new Error(error);
     });
   }
-  // axios.post(API,
-  //   {
-  //     headers: {
-  //       'Authorization': `${token}`,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then((response) => {
-  //     dispatch(getHeartAPI(book_id));
-  //     window.alert('좋아요 하셨습니다.');
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+
 }
 
-//   axios.post(API,
-//     {
-//       headers: {
-//         'Authorization': `${token}`,
-//       }
-//     })
-//     .then((response) => {
-//       window.alert('좋아요 하셨습니다.');
-//       // 좋아요 정보 다시 가져오기
-//       dispatch(getHeartAPI(book_id));
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       window.alert(error);
-//     })
-// }
 
 
 // 좋아요 취소
