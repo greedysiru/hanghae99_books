@@ -28,3 +28,4 @@ yarn.lock
 /public
 
 
+src/shared/check.js

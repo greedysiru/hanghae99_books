@@ -29,10 +29,21 @@ const TextFiled = (props) => {
 
   // 작성 보내기
   const submitReview = () => {
+    // 작성 여부 확인
+    const confirmFlag = window.confirm('작성하시겠습니까?')
+    if (!confirmFlag) {
+      return
+    }
     dispatch(reviewActions.writeReviewAPI(id))
   }
   // 수정 보내기
   const submitEdit = () => {
+
+    // 수정 여부 확인
+    const confirmFlag = window.confirm('수정하시겠습니까?')
+    if (!confirmFlag) {
+      return
+    }
     dispatch(reviewActions.editReviewAPI())
     setValue('')
 
@@ -40,6 +51,11 @@ const TextFiled = (props) => {
 
   // 삭제하기
   const submitDelete = () => {
+    // 삭제 여부 확인
+    const confirmFlag = window.confirm('삭제하시겠습니까? 복구할 수 없습니다.')
+    if (!confirmFlag) {
+      return
+    }
     dispatch(reviewActions.deleteReviewAPI())
     setValue('')
   }

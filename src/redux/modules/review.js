@@ -94,6 +94,8 @@ const writeReviewAPI = (id) => {
         localStorage.removeItem("is_token");
         localStorage.removeItem("login_id")
         window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
+        history.push('/login');
+
       })
   }
 }
@@ -169,6 +171,7 @@ const editReviewAPI = () => {
         localStorage.removeItem("is_token");
         localStorage.removeItem("login_id")
         window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
+        history.push('/login');
       })
   }
 }
@@ -200,6 +203,8 @@ const deleteReviewAPI = () => {
         localStorage.removeItem("is_token");
         localStorage.removeItem("login_id")
         window.alert('토큰이 만료되었습니다. 로그인 후 다시 시도해주세요.');
+        history.push('/login');
+
       })
   }
 }
