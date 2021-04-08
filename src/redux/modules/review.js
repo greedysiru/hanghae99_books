@@ -141,7 +141,7 @@ const editReviewAPI = () => {
     const text = getState().review.text;
     const star = getState().review.star;
     if (text === null || star === 0) {
-      window.alert('수정할 내용을 입력하세요.')
+      window.alert('별점과 내용을 수정해주세요.')
       return
     }
     const API = `http://seungwook.shop/api/books/${id}/comments/${comment_id}`;
