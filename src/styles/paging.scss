@@ -4,4 +4,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+     min-width: 250px;
+      max-width: 800px;
+}
+
+
+@media screen and (max-width:768px){
+  .paging{
+    margin: 20px 0px;
+    justify-content: center;
+    width: 100vw;
+  }
+  .pagination{
+    margin: 0px 0px;
+    
+  }
+  .page-item{
+    width:27px;
+    height: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+  }
+
 }

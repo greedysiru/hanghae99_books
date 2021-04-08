@@ -25,6 +25,7 @@ const Signup = (props) => {
       window.alert('회원가입에 필요한 모든 정보를 입력해주세요.');
       return;
     }
+
     if (pwd !== pwd_check) {
       window.alert('패스워드와 패스워드 확인이 일치하지 않습니다.');
       return;
@@ -68,7 +69,7 @@ const Signup = (props) => {
               <input
                 className="input_group"
                 placeholder="비밀번호 확인"
-                type="text"
+                type="password"
                 // 비밀번호 확인
                 onChange={(e) => {
                   setPwdCheck(e.target.value);

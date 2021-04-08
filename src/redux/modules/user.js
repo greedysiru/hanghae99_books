@@ -40,8 +40,8 @@ const signupAPI = (id, pwd, pwd_check) => {
         }
       })
       .then((response) => {
-        console.log(response);
         window.alert('회원가입 되었습니다. 로그인해주세요.')
+        history.push('/login')
       }).catch((error) => {
         console.log(error);
         window.alert(error);
