@@ -111,6 +111,7 @@ const bookListAPI = (select) => {
 };
 
 // 책 상세 정보 가져오기
+// 상세 페이지가 렌더링 되면 호출되어 좋아요, 리뷰 정보도 연이어 가져오기 그 후 리덕스에 저장
 const bookInfoAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
     const API = `http://seungwook.shop/api/books/${book_id}`;
@@ -123,11 +124,11 @@ const bookInfoAPI = (book_id) => {
         dispatch(getBookInfo(_book_info));
       })
       .then(
-        // 좋아요 정보
+        // 좋아요 정보 가져오기
         dispatch(heartActions.getHeartAPI(book_id))
       )
       .then(
-        // 리뷰정보
+        // 리뷰 정보 가져오기
         dispatch(reviewActions.getReviewAPI(book_id))
       )
       .catch((error) => {

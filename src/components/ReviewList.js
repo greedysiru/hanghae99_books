@@ -24,11 +24,10 @@ const ReviewList = (props) => {
   const comment_list = useSelector((state) => state.review.review_info.comment);
 
 
-
+  // 코멘트 리스트를 받아올 때 까지 로딩하기
   if (!comment_list) {
     return <ElSpinner />
   }
-
   if (comment_list === null) {
     return (
       <div>
@@ -38,6 +37,7 @@ const ReviewList = (props) => {
   } else {
     return (
       <div>
+        {/* 가져온 코멘트 리스트를 하나하나 접근하며 출력 */}
         {comment_list.map((p, idx) => {
           return (
             <div key={p.id}>

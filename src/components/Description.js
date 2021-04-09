@@ -19,14 +19,15 @@ import { useSelector } from 'react-redux';
 const Description = (props) => {
   // 책 정보 가져오기
   const { description } = useSelector(state => state.books.book_info);
-
+  // 가져올 때까지 로딩
   if (!description) {
     return <ElSpinner />
   }
-
+  // 책 소개
   return (
     <div className="description">
       <h2 className="introduce">책 소개</h2>
+      {/* 끝 부분의 계속 읽기는 삭제 */}
       <p className="detail">{description.split('계속 읽기').[0]}</p>
     </div>
   )

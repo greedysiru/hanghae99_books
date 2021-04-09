@@ -49,6 +49,7 @@ const BookInfo = (props) => {
     dispatch(heartActions.deleteHeartAPI(id))
   }
 
+  // 로그인 상태일 떄 조건부 렌더링
   if (props.is_login) {
     return (
       <div
@@ -81,6 +82,7 @@ const BookInfo = (props) => {
                 <Star
                   avgStarRate={props.avgStarRate}
                 ></Star>
+                {/* 가져온 평균 별점이 NaN일 때 표시하지 않기 */}
                 {props.avgStarRate === NaN ? (
 
                   <span className="bookInfo__contents__star__text">
@@ -88,6 +90,7 @@ const BookInfo = (props) => {
                   </span>
 
                 ) : null}
+                {/* 별점을 준 사람 수 */}
                 <span className="bookInfo__contents__star__num">
                   ({props.starRateCount}명)
                 </span>
@@ -111,6 +114,7 @@ const BookInfo = (props) => {
                 </span>
               </div>
               {/* 좋아요 버튼 */}
+              {/* 좋아요, 좋아요 취소 토글기능 */}
               <div className="bookInfo__contents__like">
                 {!check ? (
                   <Button

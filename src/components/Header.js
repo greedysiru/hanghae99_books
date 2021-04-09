@@ -33,11 +33,13 @@ const Header = (props) => {
       <div className="header">
         <nav className="navbar navbar-expand-md navbar-light">
           <a className="navbar-brand"
+            // 클릭시 메인으로 돌아가기
             onClick={() => { history.push('/') }}
           ><span className="logo-bold">RIDI</span> <span className="logo">Select</span></a>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <a className="nav-link"
+                // 클릭시 메인
                 onClick={() => { history.push('/') }}
               ><span className="logo-bold">RIDIBOOKS</span></a>
             </li>

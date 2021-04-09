@@ -6,6 +6,7 @@ import '../styles/slide.scss';
 // 메인페이지의 슬라이드
 
 // 슬라이드에 필요한 요소 가져오기
+// 추후 추가할 예정 (2021.04.09 시점 미적용)
 import {
   Card,
   CardContent,

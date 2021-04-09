@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 // 라벨
+// 별점의 점수에 따라서 문구를 변경
 const labels = {
   0: '이 책을 평가해주세요!',
   1: '별로예요',

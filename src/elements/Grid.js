@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-
+// 그리드 컴포넌트
 const Grid = (props) => {
-    const {children} = props
+  const { children } = props
 
   return (
     <React.Fragment>
@@ -13,7 +13,7 @@ const Grid = (props) => {
 };
 
 Grid.defaultProps = {
-    chidren: null,
+  chidren: null,
 
 };
 

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+
+// 텍스트 컴포넌트
 const Text = (props) => {
   const { children } = props;
 

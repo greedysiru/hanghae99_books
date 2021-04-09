@@ -11,21 +11,25 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { actionCreators as booksActions } from "../redux/modules/books";
 import { useDispatch } from "react-redux";
 
-
+// 메인 페이지의 서적 목록 보기 선택 옵션
+// 최신순, 좋아요순, 별점순
 const SortSelect = () => {
   const dispatch = useDispatch();
+  // 기본값은 최신순
   const [select, setSelect] = React.useState('createdAt');
 
+  // 서버로부터 서적 목록 가져오기
   React.useEffect(() => {
     dispatch(booksActions.bookListAPI(select));
   }, []);
 
+  // 드롭박스가 바뀌면 그것에 맞추어 서적 목록 가져오기
   const sortSelection = (e) => {
     setSelect(e.target.value);
-
     dispatch(booksActions.bookListAPI(e.target.value));
   }
 
+  // 드롭박스
   return (
     <div className="sortselect">
       <Select

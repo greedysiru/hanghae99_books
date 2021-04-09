@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // 리덕스 접근
 import { useSelector } from 'react-redux';
 
+// 스타일을 설정하는 함수
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -33,10 +34,13 @@ const Star = (props) => {
         <Rating
           name="half-rating-read"
           style={{
+            // 별 색상 설정
             fontSize: "18px",
             color: "#FA722E"
           }}
+          // 별점 값
           value={starRate}
+          // 단위는 0.5씩
           precision={0.5}
           readOnly />
 

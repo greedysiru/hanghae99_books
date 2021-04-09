@@ -56,6 +56,7 @@ const TextFiled = (props) => {
     if (!confirmFlag) {
       return
     }
+    // 삭제 API 호출
     dispatch(reviewActions.deleteReviewAPI())
     setValue('')
   }
