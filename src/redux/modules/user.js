@@ -26,7 +26,7 @@ const initialState = {
 // 회원 가입
 const signupAPI = (id, pwd, pwd_check) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://seungwook.shop/api/signup";
+    const API = "http://54.180.153.188/api/signup";
 
     axios.post(API,
       {
@@ -55,7 +55,7 @@ const signupAPI = (id, pwd, pwd_check) => {
 const loginAPI = (id, pwd) => {
   return function (dispatch, getState, { history }) {
 
-    const API = "http://seungwook.shop/api/login";
+    const API = "http://54.180.153.188/api/login";
 
     axios.post(API,
       {

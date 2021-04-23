@@ -63,7 +63,7 @@ const writeReviewAPI = (id) => {
     const id = getState().books.book_info.id;
     const text = getState().review.text;
     const star = getState().review.star;
-    const API = `http://seungwook.shop/api/books/${id}/comments`;
+    const API = `http://54.180.153.188/api/books/${id}/comments`;
     const token = localStorage.getItem('is_token');
     if (text === "" || star === 0) {
       window.alert('리뷰 내용을 작성해주세요.')
@@ -103,7 +103,7 @@ const writeReviewAPI = (id) => {
 // 페이지에 맞춰 책 리뷰 가져오기
 const getReviewAPI = (id) => {
   return function (dispatch, getState, { history }) {
-    const API = `http://seungwook.shop/api/books/${id}/comments`;
+    const API = `http://54.180.153.188/api/books/${id}/comments`;
     axios.get(API)
       .then((response) => {
         return response.data
@@ -146,7 +146,7 @@ const editReviewAPI = () => {
       window.alert('별점과 내용을 수정해주세요.')
       return
     }
-    const API = `http://seungwook.shop/api/books/${id}/comments/${comment_id}`;
+    const API = `http://54.180.153.188/api/books/${id}/comments/${comment_id}`;
     const token = localStorage.getItem('is_token');
     axios.put(API,
       {
@@ -181,7 +181,7 @@ const deleteReviewAPI = () => {
   return function (dispatch, getState, { history }) {
     const comment_id = getState().review.user_comment.id;
     const id = getState().books.book_info.id;
-    const API = `http://seungwook.shop/api/books/${id}/comments/${comment_id}`;
+    const API = `http://54.180.153.188/api/books/${id}/comments/${comment_id}`;
     const token = localStorage.getItem('is_token');
     axios.delete(API,
 

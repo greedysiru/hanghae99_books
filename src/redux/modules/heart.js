@@ -24,7 +24,7 @@ const initialState = {
 // 좋아요 정보 조회
 const getHeartAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
-    const API = `http://seungwook.shop/api/books/${book_id}/heart`;
+    const API = `http://54.180.153.188/api/books/${book_id}/heart`;
     const token = localStorage.getItem('is_token');
 
     axios.get(API,
@@ -49,7 +49,7 @@ const getHeartAPI = (book_id) => {
 const addHeartAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
 
-    const API = `http://seungwook.shop/api/books/${book_id}/heart`;
+    const API = `http://54.180.153.188/api/books/${book_id}/heart`;
     const token = localStorage.getItem('is_token');
     // 로그아웃 상태이면 실행하지 않기
     if (!token) {
@@ -80,7 +80,7 @@ const addHeartAPI = (book_id) => {
 const deleteHeartAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
 
-    const API = `http://seungwook.shop/api/books/${book_id}/heart`;
+    const API = `http://54.180.153.188/api/books/${book_id}/heart`;
     const token = localStorage.getItem('is_token');
     // 로그아웃 상태이면 실행하지 않기
     if (!token) {

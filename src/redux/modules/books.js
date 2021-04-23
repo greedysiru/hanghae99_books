@@ -86,7 +86,7 @@ const bookListAPI = (select) => {
       current = 1;
     }
 
-    const API = `http://seungwook.shop/api/books?sort=${select}&page=${current}&size=24`;
+    const API = `http://54.180.153.188/api/books?sort=${select}&page=${current}&size=24`;
     axios.get(API)
       .then((response) => {
         return response.data
@@ -114,7 +114,7 @@ const bookListAPI = (select) => {
 // 상세 페이지가 렌더링 되면 호출되어 좋아요, 리뷰 정보도 연이어 가져오기 그 후 리덕스에 저장
 const bookInfoAPI = (book_id) => {
   return function (dispatch, getState, { history }) {
-    const API = `http://seungwook.shop/api/books/${book_id}`;
+    const API = `http://54.180.153.188/api/books/${book_id}`;
     axios.get(API)
       .then((response) => {
         return response.data
