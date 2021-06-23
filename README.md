@@ -83,6 +83,18 @@
 
 
 
+## API 설계
+
+![api1](images/api1.png)
+
+![api2](images/api2.png)
+
+![api3](images/api3.png)
+
+![api4](images/api4.png)
+
+
+
 ## 개발 타임라인
 
 **프로젝트를 진행하며 기록한 [TIL](https://github.com/greedysiru/TIL/tree/main/hanghae99) 및 [일지](https://greedysiru.tistory.com/category/이모저모/항해99%20일지) 기반의 타임라인**
